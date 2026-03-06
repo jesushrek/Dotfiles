@@ -1,0 +1,414 @@
+@import url("file:///home/voyager-1/.cache/wal/colors.css");
+
+:root {
+    /* Remove all rounded corners */
+    --tab-border-radius: 0 !important;
+    --toolbarbutton-border-radius: 0 !important;
+    --button-border-radius: 0 !important;
+    --border-radius-medium: 0 !important;
+    --arrowpanel-border-radius: 0 !important;
+    --arrowpanel-menuitem-border-radius: 0 !important;
+    
+    /* Panel styling */
+    --arrowpanel-background: var(--background) !important;
+    --arrowpanel-color: var(--foreground) !important;
+    --arrowpanel-border-color: var(--color0) !important;
+    
+    /* Ensure icons use proper colors */
+    --toolbarbutton-icon-fill: var(--foreground) !important;
+    --lwt-toolbarbutton-icon-fill: var(--foreground) !important;
+    
+    /* Remove all shadows */
+    --panel-shadow: none !important;
+    --arrowpanel-shadow: none !important;
+    --menu-shadow: none !important;
+    --popup-shadow: none !important;
+}
+
+/* === GLOBAL SHADOW REMOVAL === */
+* {
+    box-shadow: none !important;
+    -moz-box-shadow: none !important;
+}
+
+/* === WINDOW & TOOLBAR BACKGROUND === */
+#main-window,
+#navigator-toolbox,
+toolbar,
+browser,
+#appcontent,
+#TabsToolbar {
+    background: var(--background) !important;
+    color: var(--foreground) !important;
+    box-shadow: none !important;
+}
+
+/* Remove window border/frame */
+#main-window {
+    border: none !important;
+    outline: none !important;
+}
+
+/* === TAB STYLING === */
+.tabbrowser-tab {
+    color: var(--foreground) !important;
+    box-shadow: none !important;
+}
+
+.tabbrowser-tab[selected] .tab-background {
+    background: var(--background) !important;
+    border: 1px solid var(--color7) !important;
+    box-shadow: none !important;
+}
+
+.tabbrowser-tab[selected] * {
+    color: var(--foreground) !important;
+    fill: var(--foreground) !important;
+}
+
+/* === URL BAR - MAIN CONTAINER === */
+#urlbar,
+#urlbar-background {
+    background: var(--color0) !important;
+    color: var(--foreground) !important;
+    border: 1px solid var(--color7) !important;
+    box-shadow: none !important;
+}
+
+#urlbar {
+    --toolbar-field-background-color: var(--color0) !important;
+    --toolbar-field-focus-background-color: var(--color0) !important;
+    --toolbar-field-color: var(--foreground) !important;
+    --toolbar-field-focus-color: var(--foreground) !important;
+    --urlbar-box-bgcolor: var(--color0) !important;
+    --urlbar-box-hover-bgcolor: var(--color0) !important;
+    min-height: 32px !important;
+}
+
+#urlbar:hover,
+#urlbar[open],
+#urlbar[focused] {
+    background: var(--color0) !important;
+    border-color: var(--color7) !important;
+    box-shadow: none !important;
+}
+
+/* URL bar input container - add padding */
+#urlbar-input-container {
+    padding: 6px 8px !important;
+}
+
+/* URL bar input field */
+#urlbar-input {
+    padding: 0 !important;
+}
+
+/* === URL BAR ICONS - FIX VISIBILITY === */
+/* All URL bar icons */
+#urlbar .urlbar-icon,
+#urlbar .urlbar-icon-wrapper,
+#urlbar-go-button,
+#page-action-buttons > toolbarbutton,
+#tracking-protection-icon-container,
+#identity-icon,
+#identity-box,
+#identity-permission-box {
+    color: var(--foreground) !important;
+    fill: var(--foreground) !important;
+    -moz-context-properties: fill, fill-opacity, stroke !important;
+}
+
+/* Identity box (lock icon, site info) */
+#identity-box,
+#identity-icon-box {
+    background: transparent !important;
+    color: var(--foreground) !important;
+}
+
+#identity-icon {
+    fill: var(--foreground) !important;
+    fill-opacity: 1 !important;
+}
+
+/* Permission icons */
+#identity-permission-box .blocked-permission-icon,
+#identity-permission-box image {
+    fill: var(--foreground) !important;
+    fill-opacity: 1 !important;
+}
+
+/* Page action buttons (bookmark star, etc.) */
+#page-action-buttons toolbarbutton {
+    fill: var(--foreground) !important;
+    color: var(--foreground) !important;
+}
+
+#page-action-buttons toolbarbutton image {
+    fill: var(--foreground) !important;
+    fill-opacity: 1 !important;
+}
+
+/* Star button (bookmark) */
+#star-button,
+#star-button-box {
+    fill: var(--foreground) !important;
+}
+
+/* Reader mode button */
+#reader-mode-button {
+    fill: var(--foreground) !important;
+}
+
+/* Tracking protection icon */
+#tracking-protection-icon {
+    fill: var(--foreground) !important;
+    fill-opacity: 1 !important;
+}
+
+/* Zoom button */
+#urlbar-zoom-button {
+    border: 1px solid var(--color7) !important;
+    background: transparent !important;
+    color: var(--foreground) !important;
+    fill: var(--foreground) !important;
+}
+
+/* === URL BAR HOVER STATES === */
+#identity-box:hover,
+#urlbar-zoom-button:hover,
+#page-action-buttons toolbarbutton:hover {
+    background: var(--color8) !important;
+    color: var(--foreground) !important;
+    fill: var(--foreground) !important;
+}
+
+/* === SEARCH MODE INDICATOR === */
+#urlbar-search-mode-indicator {
+    background: transparent !important;
+    color: var(--foreground) !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+#urlbar-search-mode-indicator image {
+    fill: var(--foreground) !important;
+    opacity: 1 !important;
+}
+
+#urlbar:not([focused]) #urlbar-search-mode-indicator {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* === URL BAR DROPDOWN === */
+.urlbarView,
+.urlbarView-body-inner {
+    background: var(--background) !important;
+    color: var(--foreground) !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.urlbarView-row {
+    color: var(--foreground) !important;
+}
+
+.urlbarView-row[selected] {
+    background: var(--color8) !important;
+    color: var(--foreground) !important;
+}
+
+/* === PANELS & MENUS === */
+panelview,
+.panel-arrowcontent,
+menupopup,
+panel,
+#contentAreaContextMenu {
+    --panel-background: var(--background) !important;
+    background-color: var(--background) !important;
+    color: var(--foreground) !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Add border only to the panel container itself */
+panel[type="arrow"] {
+    border: 1px solid var(--color7) !important;
+}
+
+menupopup,
+#contentAreaContextMenu {
+    border: 1px solid var(--color7) !important;
+}
+
+/* Menu items */
+menuitem,
+.menu-text,
+.menu-iconic-text,
+.panel-subview-header label,
+.subviewbutton {
+    color: var(--foreground) !important;
+}
+
+/* Menu hover */
+menuitem:hover,
+.subviewbutton:hover {
+    background: var(--color8) !important;
+    color: var(--foreground) !important;
+}
+
+/* Keep text and icons visible on hover */
+menuitem:hover *,
+.subviewbutton:hover * {
+    color: var(--foreground) !important;
+    fill: var(--foreground) !important;
+}
+
+/* Disabled items */
+menuitem[disabled="true"] {
+    opacity: 0.5 !important;
+}
+
+/* Menu separators */
+menuseparator {
+    -moz-appearance: none !important;
+    appearance: none !important;
+    background: transparent !important;
+    border: none !important;
+    border-top: 1px solid var(--color7) !important;
+    margin: 4px 0 !important;
+    padding: 0 !important;
+    min-height: 1px !important;
+    height: 1px !important;
+}
+
+/* Remove default separator styling */
+menuseparator::before,
+menuseparator::after {
+    display: none !important;
+}
+
+/* === TOOLBAR BUTTONS === */
+toolbarbutton {
+    fill: var(--foreground) !important;
+    color: var(--foreground) !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+}
+
+toolbarbutton image {
+    fill: var(--foreground) !important;
+}
+
+/* Remove all hover backgrounds */
+toolbarbutton:hover {
+    background: transparent !important;
+}
+
+/* Inner icon gets the hover effect */
+toolbarbutton:hover .toolbarbutton-icon,
+toolbarbutton:hover .toolbarbutton-badge-stack {
+    background: var(--color8) !important;
+    border-radius: 0 !important;
+}
+
+/* Keep icon colors visible on hover */
+toolbarbutton:hover image {
+    fill: var(--foreground) !important;
+}
+
+/* === BOOKMARKS TOOLBAR === */
+#PersonalToolbar,
+#PlacesToolbar {
+    background: var(--background) !important;
+}
+
+.bookmark-item {
+    color: var(--foreground) !important;
+    fill: var(--foreground) !important;
+}
+
+.bookmark-item:hover {
+    background: var(--color8) !important;
+    color: var(--foreground) !important;
+}
+
+.bookmark-item:hover * {
+    color: var(--foreground) !important;
+    fill: var(--foreground) !important;
+}
+
+/* === SCROLLBARS === */
+* {
+    scrollbar-color: var(--cursor) var(--background) !important;
+}
+
+/* === FIND BAR (Ctrl+F) === */
+findbar,
+.findbar-container {
+    background: var(--background) !important;
+    color: var(--foreground) !important;
+    box-shadow: none !important;
+}
+
+findbar textbox {
+    background: var(--color0) !important;
+    color: var(--foreground) !important;
+    border: 1px solid var(--color7) !important;
+    box-shadow: none !important;
+}
+
+findbar toolbarbutton {
+    color: var(--foreground) !important;
+    fill: var(--foreground) !important;
+}
+
+findbar toolbarbutton:hover {
+    background: var(--color8) !important;
+    color: var(--foreground) !important;
+}
+
+.findbar-find-status,
+.findbar-find-count,
+findbar checkbox label {
+    color: var(--foreground) !important;
+}
+
+.findbar-closebutton image {
+    fill: currentColor !important;
+}
+
+/* === ADDITIONAL SHADOW & BORDER REMOVAL === */
+#navigator-toolbox::after {
+    border-bottom: none !important;
+}
+
+#nav-bar {
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.titlebar-spacer {
+    border: none !important;
+}
+
+/* Remove any popup/panel shadows */
+tooltip,
+.tooltip-label {
+    box-shadow: none !important;
+    border: 1px solid var(--color7) !important;
+}
+
+/* Remove notification shadows */
+notification,
+.notificationbox-stack {
+    box-shadow: none !important;
+}
+
+/* Remove sidebar shadows */
+#sidebar-box,
+#sidebar-header {
+    box-shadow: none !important;
+    border: none !important;
+}
+

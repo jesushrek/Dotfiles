@@ -1,0 +1,11 @@
+@import "colors.css";
+@-moz-document url("about:newtab"), url("about:home") {
+    body {
+        background-color: var(--background) !important; /* Uses the CSS variable */
+        \#newtab-search-text,
+        .search-wrapper input {
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+    }
+}

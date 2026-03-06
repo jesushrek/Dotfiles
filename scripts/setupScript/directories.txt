@@ -1,0 +1,6 @@
+$HOME/personal/projects
+$HOME/personal/pdfs
+$HOME/video
+$HOME/music
+$HOME/.repo
+$HOME/Pictures/Screenshots
