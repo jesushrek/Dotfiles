@@ -5,7 +5,7 @@ set -e
 raw_url="https://gitlab.com/shrek68/dotfiles/-/raw/master/scripts/setupScript"
 firefox_url="https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js"
 conf_dir="${HOME}/.config"
-git_url="https://gitlab.com/shrek68/dotfiles"
+git_url="https://github.com/jesushrek/Dotfiles"
 wal_url="https://gitlab.com/shrek68/wallpapers"
 xorg_dir="/etc/X11/xorg.conf.d"
 svc_file="services.txt"
