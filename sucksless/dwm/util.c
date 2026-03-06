@@ -14,6 +14,7 @@ die(const char *fmt, ...)
 	int saved_errno;
 
 	saved_errno = errno;
+
 	va_start(ap, fmt);
 	vfprintf(stderr, fmt, ap);
 	va_end(ap);
