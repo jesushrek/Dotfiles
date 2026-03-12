@@ -18,6 +18,7 @@ set tabstop=4
 set complete+=i
 set path+=/usr/local/include/
 set path+=/usr/include/c++/**
+set tagbsearch
 
 setlocal tabstop=4 shiftwidth=4 expandtab
 

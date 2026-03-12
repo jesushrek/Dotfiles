@@ -1,9 +1,9 @@
-/* See LICENSE file for copyright and license details. */
+
 #include <X11/XF86keysym.h>
 #include <X11/keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -73,7 +73,7 @@ static const char *upvol[]      = { "/usr/bin/wpctl",   "set-volume", "@DEFAULT_
 static const char *downvol[]    = { "/usr/bin/wpctl",   "set-volume", "@DEFAULT_AUDIO_SINK@",      "5%-",      NULL };
 static const char *mutevol[]    = { "/usr/bin/wpctl",   "set-mute",   "@DEFAULT_AUDIO_SINK@",      "toggle",   NULL };
 
-static const char *dmenucmd[]   = { "dmenu_run", "-p", "Dmenu_run", "-i" };
+static const char *dmenucmd[]   = { "dmenu_run", "-p", "Dmenu_run" };
 static const char *light_up[]   = { "/usr/bin/brillo", "-q", "-A", "5", NULL };
 static const char *light_down[] = { "/usr/bin/brillo", "-q", "-U", "5", NULL };
 static const char *clipMenu[]  = { "clipmenu", NULL };

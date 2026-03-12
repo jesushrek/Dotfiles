@@ -13,11 +13,11 @@ usermodmap="$HOME/.Xmodmap"
 sysresources="$xinitdir/.Xresources"
 sysmodmap="$xinitdir/.Xmodmap"
 
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+#[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 #wal -R 
 ~/scripts/mouse-binary -sync &
-nitrogen --restore &
+#nitrogen --restore &
 redshift &
 
 xset s 298 2
