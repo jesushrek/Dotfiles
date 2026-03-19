@@ -29,6 +29,8 @@ pipewire &
 clipmenud &
 qbittorrent-nox &
 
+~/scripts/tracker.sh &
+
 dunst & #-conf ~/.config/dunst/dunstrc_xr_colors &
 ~/scripts/bar.sh & 
 

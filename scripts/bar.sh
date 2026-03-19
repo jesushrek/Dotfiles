@@ -16,7 +16,7 @@ devnagari() {
 }
 
 while true; do
-    current_date=$(date +"%H:%M" | devnagari )
+    current_date=$(date +"%R" | devnagari )
     date="$(convertor -atb $(date "+%Y %m %d") | devnagari)"
     battery=$(cat /sys/class/power_supply/BAT0/capacity | devnagari )
     xsetroot -name "[  "$date" |  "$current_date" |  "$battery"% ]"
