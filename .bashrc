@@ -3,10 +3,14 @@
 # If not running interactively, don't do anything
 #environmental variables 
 
+vimfzf() {
+    local file=$(fzf)
+    [ -n "$file" ] && vim "$file"
+}
+
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 set -o vi
-
 #don't know 
 [[ $- != *i* ]] && return
 
@@ -30,9 +34,6 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; fi
 #export PATH=/usr/local/cuda-13.1/bin:$PATH
 #export LD_LIBRARY_PATH=/usr/local/cuda-13.1/lib64:$LD_LIBRARY_PATH
 
-alias devnagari=~/scripts/devanagari.sh
-
-vimfzf() {
-    local file=$(fzf)
-    [ -n "$file" ] && vim "$file"
+devnagari() { 
+    sed 'y/0123456789/०१२३४५६७८९/'
 }

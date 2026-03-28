@@ -1,25 +1,16 @@
 #!/bin/sh
-devnagari() {
-    awk '{
-    gsub(/0/, "०");
-    gsub(/1/, "१");
-    gsub(/2/, "२");
-    gsub(/3/, "३");
-    gsub(/4/, "४");
-    gsub(/5/, "५");
-    gsub(/6/, "६");
-    gsub(/7/, "७");
-    gsub(/8/, "८");
-    gsub(/9/, "९");
-    print
-}'
+_devnagari() { 
+    sed 'y/0123456789/०१२३४५६७८९/'
 }
 
 while true; do
-    current_date=$(date +"%R" | devnagari )
-    date="$(convertor -atb $(date "+%Y %m %d") | devnagari)"
-    battery=$(cat /sys/class/power_supply/BAT0/capacity | devnagari )
-    xsetroot -name "[  "$date" |  "$current_date" |  "$battery"% ]"
+    _current_date="$(date +"%R")"
+    _date="$(convertor -atb $(date "+%Y %m %d"))"
+    _battery="$(cat /sys/class/power_supply/BAT0/capacity)"
+
+    _text="$(echo "[  "${_date}" |  "${_current_date}" |  "${_battery}"% ]" | _devnagari)"
+
+    xsetroot -name "${_text}"
     ~/scripts/sleepReminder.sh
     sleep 1m
 done
