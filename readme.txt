@@ -4,7 +4,7 @@ To automatically set up
 curl -sL https://jesushrek.github.io/install | sh
 
 For manual 
-git clone --bare https://gitlab.com/shrek68/dotfiles $HOME/.dotfiles
+git clone --bare https://github.com/jesushrek/dotfiles $HOME/.dotfiles
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 dotfiles checkout 
 dotfiles config --local status.showUntrackedFiles no

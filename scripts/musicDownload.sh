@@ -8,7 +8,7 @@ fi
 
 notify-send "Download started"
 
-yt-dlp -f bestaudio --extract-audio --audio-format vorbis --audio-quality 0 -o '$HOME/music/%(title)s.%(ext)s' --restrict-filenames "$URL"
+yt-dlp -f "bestaudio" --extract-audio --audio-format vorbis --audio-quality 0 --replace-in-metadata "title" " " "_" -o "$HOME/music/%(title)s.%(ext)s" "$URL"
 
 notify-send "Downloaded $URL"
 
