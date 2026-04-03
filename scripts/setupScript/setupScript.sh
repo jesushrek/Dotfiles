@@ -2,7 +2,7 @@
 
 set -e
 
-raw_url="https://gitlab.com/shrek68/dotfiles/-/raw/master/scripts/setupScript"
+raw_url="https://raw.githubusercontent.com/jesushrek/Dotfiles/master/scripts/setupScript"
 firefox_url="https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js"
 conf_dir="${HOME}/.config"
 git_url="https://github.com/jesushrek/Dotfiles"
@@ -92,11 +92,14 @@ setup_tlp() {
         printf "[!] TLP config file not found, skipping TLP configuration\n"
         return 0
     fi
-    for _param in 'RUNTIME_PM_ON_AC=auto' 'RUNTIME_PM_ENABLE="01:00.0"'; do
-        if ! grep -qFx "${_param}" "${_conf}" 2>/dev/null; then
-            printf "%s\n" "${_param}" | sudo tee -a "${_conf}" > /dev/null
-        fi
-    done
+
+    if lspci | grep -i nvidia; then
+        for _param in 'RUNTIME_PM_ON_AC=auto' 'RUNTIME_PM_ENABLE="01:00.0"'; do
+            if ! grep -qFx "${_param}" "${_conf}" 2>/dev/null; then
+                printf "%s\n" "${_param}" | sudo tee -a "${_conf}" > /dev/null
+            fi
+        done
+    fi
     if [ -d /etc/sv/tlp ] && [ ! -L /var/service/tlp ]; then
         sudo ln -s /etc/sv/tlp /var/service/
     fi
@@ -260,7 +263,7 @@ fetch_dependencies
 setup_user_groups
 setup_power_controls
 setup_hosts_focus
-set_vpim_repo
+#set_vpim_repo
 setup_timezone
 setup_repos
 create_dirs_from_file
