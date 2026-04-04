@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 raw_url="https://raw.githubusercontent.com/jesushrek/Dotfiles/master/scripts/setupScript"
 firefox_url="https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js"
 conf_dir="${HOME}/.config"
