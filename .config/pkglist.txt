@@ -4,6 +4,7 @@ FreesmLauncher
 ImageMagick
 LGOGDownloader
 MesaLib-devel
+Thunar
 Vulkan-Tools
 acct
 alsa-lib-devel
@@ -91,8 +92,10 @@ libgcc-32bit
 libglvnd-32bit
 libglvnd-devel
 libjack-pipewire
+libmagick-devel
 libmpc
 libmpc-devel
+libopencv-devel
 libstdc++-32bit
 libunwind-32bit
 libusb-devel
@@ -111,7 +114,6 @@ mpv
 ncurses-devel
 nerd-fonts-symbols-ttf
 network-manager-applet
-nitrogen
 nodejs
 noto-fonts-cjk
 noto-fonts-emoji
@@ -119,6 +121,7 @@ noto-fonts-ttf
 nvidia
 nvidia-libs-32bit
 nvidia-opencl
+nvtop
 obs
 openjdk21
 openjdk25
@@ -150,6 +153,7 @@ tesseract-ocr
 tesseract-ocr-eng
 tesseract-ocr-nep
 texlive-bin
+thermald
 thunderbird
 tlp
 tlp-rdw
@@ -178,6 +182,7 @@ xorg-server
 xorg-server-common
 xss-lock
 xtools
+xwallpaper
 yazi
 yt-dlp
 zathura
