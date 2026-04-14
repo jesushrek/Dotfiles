@@ -16,7 +16,7 @@ sysmodmap="$xinitdir/.Xmodmap"
 #[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 #wal -R 
-nitrogen --restore &
+~/.config/.wallpaper.sh &
 redshift &
 
 xset s 298 2
