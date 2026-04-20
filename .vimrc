@@ -2,7 +2,6 @@ call plug#begin()
 Plug 'ap/vim-css-color'
 Plug 'lervag/vimtex'
 call plug#end()
-
 set t_Co=16
 
 filetype plugin on 
