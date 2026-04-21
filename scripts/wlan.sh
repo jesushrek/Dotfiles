@@ -1,55 +1,59 @@
 #!/bin/bash
 
-GET_INTERFACE() {
-    ls /sys/class/net | grep ^w | head -n 1
-}
-
-SCAN_NETWORKS() {
-    iwctl station "$1" scan
-}
-
 GET_CONNECTED_NETWORK() {
-    iwctl station "$1" show | grep "Connected network" | awk -F 'network' '{print $2}' | xargs
+    nmcli -t device | grep wlo1 | cut -d':' -f4 | head -1
 }
 
 LIST_NETWORKS() {
-    iwctl station "$1" get-networks | awk -F'psk' '/psk/{print$1}' | sed 's/\x1B\[[0-9;]*[a-zA-Z]//g;/>/d;s/^[[:space:]]*//g;s/[[:space:]]*$//g'
+    nmcli --color no device wifi list | grep -v '^\*' | tail -n +2
 }
 
 PROMPT_KNOWN_NETWORK_ACTION() {
-    printf "connect\nforget\ndisconnect\nNoAutoReconnect\ncancel" | dmenu -l 5 -i -p "Known Network Want to?"
+    printf "connect\nforget\ndisconnect\nNoAutoReconnect\ncancel" | dmenu -l 5 -i -p "Action:"
+}
+
+GET_UUID_FROM_NETWORK() { 
+    nmcli -t -f NAME,UUID connection show | grep -m 1 "^$1:" | cut -d':' -f2
+}
+
+GET_BSSID_FROM_NETWORK() { 
+    nmcli -t -f SSID,BSSID device wifi list | grep -m 1 "^$1:" | cut -d':' -f2-
 }
 
 MAIN() {
-    interface=$(GET_INTERFACE)
-    SCAN_NETWORKS "$interface"
+    connected_net=$(GET_CONNECTED_NETWORK)
 
-    connected_net=$(GET_CONNECTED_NETWORK "$interface")
-    selected_net=$(LIST_NETWORKS "$interface" | dmenu -p "$connected_net:-" -l 15) || exit 0
+    selection=$(LIST_NETWORKS | dmenu -p "Active: $connected_net" -l 15)
+    [ -z "$selection" ] && exit 0
 
-    if iwctl known-networks list | grep -q "$selected_net"; then
-        action=$(PROMPT_KNOWN_NETWORK_ACTION) || exit 0
+    selected_net=$(echo "$selection" | sed 's/^ *[^ ]* *//' | awk '{print $1}')
+
+    if nmcli connection show | grep -q "^$selected_net "; then
+        action=$(PROMPT_KNOWN_NETWORK_ACTION)
+        [ -z "$action" ] || [ "$action" == "cancel" ] && continue
+
+        uuid=$(GET_UUID_FROM_NETWORK "$selected_net")
 
         case "$action" in 
             "connect")
-                iwctl station "$interface" connect -- "$selected_net" && notify-send "connected to $selected_net" || notify-send "Failed in life" 
+                nmcli connection up "$uuid" && notify-send "Connected" || notify-send "Failed"
                 ;;
             "forget")
-                iwctl known-networks "$selected_net" forget && notify-send "What? network again"
-                ;;
-            "cancel")
-                notify-send "aborting" && exit 1
+                nmcli connection delete "$uuid" && notify-send "Deleted"
                 ;;
             "disconnect")
-                iwctl station "$interface" disconnect && notify-send "disconnecting"
+                nmcli connection down "$uuid" && notify-send "Disconnected"
                 ;;
             "NoAutoReconnect")
-                iwctl known-networks "$selected_net" set-property AutoConnect no && notify-send "Auto Reconnect has been turned off for" "$selected_net"
+                nmcli connection modify "$uuid" connection.autoconnect no
                 ;;
         esac
     else 
-        passcode=$(printf "" | dmenu -p passcode:) || exit 0
-        iwctl station "$interface" connect "$selected_net" --passphrase "$passcode" && notify-send "connected" || notify-send "Sorry,couldn't do it"
+        passcode=$(printf "" | dmenu -p "Password for $selected_net:")
+        [ -z "$passcode" ] && continue
+
+        bssid=$(GET_BSSID_FROM_NETWORK "$selected_net")
+        nmcli device wifi connect "$bssid" password "$passcode"
     fi
 }
 
