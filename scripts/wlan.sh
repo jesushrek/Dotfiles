@@ -17,7 +17,7 @@ GET_UUID_FROM_NETWORK() {
 }
 
 GET_BSSID_FROM_NETWORK() { 
-    nmcli -t -f SSID,BSSID device wifi list | grep -m 1 "^$1:" | cut -d':' -f2-
+    nmcli -t -f SSID,BSSID device wifi list | grep -m 1 "^$1:" | cut -d':' -f2- | sed 's/\\//g'
 }
 
 MAIN() {
