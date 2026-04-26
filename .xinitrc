@@ -15,7 +15,7 @@ sysmodmap="$xinitdir/.Xmodmap"
 
 #[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
-#wal -R 
+wal -R 
 ~/.config/.wallpaper.sh &
 redshift &
 
@@ -28,7 +28,7 @@ pipewire &
 clipmenud &
 qbittorrent-nox &
 
-dunst & #-conf ~/.config/dunst/dunstrc_xr_colors &
+dunst -conf ~/.config/dunst/dunstrc_xr_colors &
 ~/scripts/bar.sh & 
 
 xss-lock -n ~/scripts/detect_fullscreen_and_move_mouse.sh -- slock &

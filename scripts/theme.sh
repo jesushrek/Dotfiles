@@ -53,7 +53,7 @@ apply_theme() {
     fi
 
     # Set wallpaper
-    nitrogen --set-scaled "$WALLPAPER_DIR/$wallpaper" --save
+    echo "xwallpaper --stretch "$WALLPAPER_DIR/$wallpaper"" > ~/.config/.wallpaper.sh && ~/.config/.wallpaper.sh
 
     # Set light/dark mode
     "$SCRIPTS_DIR/lightxDark.sh" "$mode"
@@ -73,7 +73,7 @@ apply_random_theme() {
     local themes=("${!THEME_CONFIG[@]}")
     local random_theme="${themes[$RANDOM % ${#themes[@]}]}"
         apply_theme "$random_theme" && refresh_resources "$random_theme (Random)"
-    }
+}
 
 main() {
     local input="$1"
