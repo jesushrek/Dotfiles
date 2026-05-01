@@ -25,6 +25,7 @@ export MOUSE_DIRECTION=left
 setxkbmap -layout us,np -variant ,olpc -option grp:alt_space_toggle &
 
 pipewire &
+picom &
 clipmenud &
 qbittorrent-nox &
 

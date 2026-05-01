@@ -10,5 +10,5 @@ if [ -n "$SELECTED" ]; then
     mpv --force-window "$MUSIC_DIR/$SELECTED"
 else
     notify-send "No music selected"
-	exit 0
+    exit 0
 fi
