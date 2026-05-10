@@ -13,8 +13,6 @@ usermodmap="$HOME/.Xmodmap"
 sysresources="$xinitdir/.Xresources"
 sysmodmap="$xinitdir/.Xmodmap"
 
-#[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-
 wal -R 
 ~/.config/.wallpaper.sh &
 redshift &

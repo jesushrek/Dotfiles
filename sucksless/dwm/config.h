@@ -78,12 +78,12 @@ static const char *mutevol[]    = { "/usr/bin/wpctl",   "set-mute",   "@DEFAULT_
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-    { "color0",             STRING,  &normbgcolor },
-    { "color0",             STRING,  &normbordercolor },
-    { "color15",            STRING,  &normfgcolor },
-    { "color7",             STRING,  &selbgcolor },
-    { "color15",            STRING,  &selbordercolor },
-    { "color0",            STRING,  &selfgcolor },
+    { "dwm.color0",             STRING,  &normbgcolor },
+    { "dwm.color0",             STRING,  &normbordercolor },
+    { "dwm.color15",            STRING,  &normfgcolor },
+    { "dwm.color7",             STRING,  &selbgcolor },
+    { "dwm.color15",            STRING,  &selbordercolor },
+    { "dwm.color0",            STRING,  &selfgcolor },
     { "borderpx",          	INTEGER, &borderpx },
     { "snap",          		INTEGER, &snap },
     { "showbar",          	INTEGER, &showbar },
