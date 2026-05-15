@@ -3,6 +3,8 @@
 printer_driver_link="https://github.com/mounaiban/captdriver.git"
 
 configure_printer() { 
+    printf "[~] Installing Cups"
+    xbps-install -Syu cups
     printf "[+] Configuring Canon CAPT printer drivers...\n"
     _repo_dir="${HOME}/.repo"
     _driver_dir="${_repo_dir}/captdriver"

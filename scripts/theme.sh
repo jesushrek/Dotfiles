@@ -66,6 +66,7 @@ refresh_resources() {
     local theme_name="$1"
     xdotool key Super+F5
     "$SCRIPTS_DIR/dunst.sh"
+    pkill dunst; dunst -conf ~/.config/dunst/dunstrc_xr_colors &
     notify-send "Applied" "$theme_name"
 }
 

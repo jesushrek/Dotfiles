@@ -252,7 +252,3 @@ user_xr_color_conf_content+="$(printf '%s\n' "${conf[@]}")"
 printf '%s\n' "$user_xr_color_conf_content" > "$user_xr_color_conf"
 
 printf '"%s" updated successfully.\n' "$user_xr_color_conf"
-
-#reloading dunst
-pkill dunst
-dunst -conf ~/.config/dunst/dunstrc_xr_colors &
