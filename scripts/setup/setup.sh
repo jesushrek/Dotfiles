@@ -46,7 +46,7 @@ setup_tlp() {
 
     if test "${_has_nvidia}" -eq 1; then
         if ! grep -q ^RUNTIME_PM_ENABLE /etc/tlp.conf; then
-            printf 'RUNTIME_PM_ENABLE=\"%s\"' "$(lspci -d 10de::03xx | grep NVIDIA | awk '{print $1}')" >> "${_tlp_conf}"
+            printf 'RUNTIME_PM_ENABLE=\"%s\\n"' "$(lspci -d 10de::03xx | grep NVIDIA | awk '{print $1}')" >> "${_tlp_conf}"
         fi
     fi
 }
@@ -90,19 +90,19 @@ set_groups() {
 
 git_init() { 
     git lfs install
-    if ! test -d ""${_home}"/.dotfiles"; then
+    if ! test -d "${_home}/.dotfiles"; then
         printf '[~] Initilizing Dotfiles.\n'
-        git clone --bare "${_git_url}" ""${_home}"/.dotfiles"
+        git clone --bare "${_git_url}" "${_home}/.dotfiles"
         local _df
-        _df="git --git-dir="${_home}"/.dotfiles/ --work-tree="${_home}""
+        _df="git --git-dir=${_home}/.dotfiles/ --work-tree=${_home}"
         "${_df}" checkout -f
         "${_df}" config status.showUntrackedFiles no
     fi
 
-    if  ! test -d ""${_home}"/wallpapers"; then
+    if  ! test -d "${_home}/wallpapers"; then
         printf '[~] Initializing Wallpapers.\n'
-        git clone "${_wal_url}" ""${_home}"/wallpapers"
-        (cd ""${_home}"/wallpapers" && git lfs pull)
+        git clone "${_wal_url}" "${_home}/wallpapers"
+        (cd "${_home}/wallpapers" && git lfs pull)
     fi
 
     . ${_home}/.bashrc
@@ -127,23 +127,23 @@ install_pkgs() {
 
 install_suckless() { 
     printf '[~] Installing Suckless Software.\n'
-    for _prog in "${_home}/suckless"/*; do
+    for _prog in "${_home}/sucksless"/*; do
         grep -rl "voyager-1" "${_prog}" | xargs -r sed -i "s|/home/voyager-1/|${_home}|g"
     done
 
-    for _prog in "${_home}/suckless"/*; do
+    for _prog in "${_home}/sucksless"/*; do
         _software="$(basename "${_prog}")"
         if [ "${_software}" = "slock" ]; then
             (cd "${_prog}" && make clean &&  make install clean)
         else
-            (cd "${_prog}" && make clean &&  make PREFIX="${_home}/local" install clean)
+            (cd "${_prog}" && make clean &&  make PREFIX="${_home}/.local" install clean)
         fi
     done
 }
 
 setup_power_control() { 
     printf '[~] Allowing Poweroff without password.\n'
-    printf '%%wheel ALL=(ALL:ALL) NOPASSWD: /bin/reboot /bin/poweroff\n' | sudo tee /etc/sudoers.d/power > /dev/null
+    printf '%%wheel ALL=(ALL:ALL) NOPASSWD: /bin/reboot, /bin/poweroff, /sbin/poweroff, /sbin/reboot\n' | sudo tee /etc/sudoers.d/power > /dev/null
 }
 
 setup_pipewire_conf() { 
@@ -156,10 +156,11 @@ setup_pipewire_conf() {
 
 clean_up() { 
     printf '[~] Finalizing.\n'
-    chown -R "$_user":"$_user" "$_home"
+    chown -R "${_user}":"${_user}" "${_home}"
     xbps-remove -OOo 
     "${_home}/scripts/theme.sh" "$(cat $_home/.config/.current_theme)"
     xbps-reconfigure -fa 
+    rm "${_pkg_list}"
     reboot
 }
 
@@ -176,4 +177,5 @@ setup_vim_plug
 setup_pipewire_conf
 enable_services
 setup_power_control
+install_suckless
 clean_up

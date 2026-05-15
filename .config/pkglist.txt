@@ -3,6 +3,8 @@ NetworkManager
 alsa-lib-devel
 alsa-pipewire
 alsa-utils
+android-tools
+android-udev-rules
 appres
 base-devel
 base-system
@@ -15,6 +17,7 @@ dunst
 fastfetch
 firefox
 flameshot
+gdb
 git
 git-lfs
 github-cli
@@ -46,10 +49,13 @@ qtcreator
 redshift
 sxiv
 tlp
+void-repo-multilib
+void-repo-multilib-nonfree
 void-repo-nonfree
 vulkan-loader
 wget
 xclip
+xdotool
 xorg
 xorg-apps
 xss-lock

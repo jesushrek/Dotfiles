@@ -98,12 +98,12 @@ static const char *dmenucmd[] = { "dmenu_run", "-p", "select: ", "-m", dmenumon 
 static const char *light_up[]   = { "/usr/bin/brillo", "-q", "-A", "5", NULL };
 static const char *light_down[] = { "/usr/bin/brillo", "-q", "-U", "5", NULL };
 static const char *clipMenu[]  = { "clipmenu", NULL };
-static const char *dmenuEmotes[] = {"/home/voyager-1/scripts/emoji.sh", NULL};
-static const char *dmenuWeb[] = {"/home/voyager-1/scripts/bookmarks.sh", NULL};
-static const char *playFart[] = {"/home/voyager-1/scripts/fart.sh", NULL};
+static const char *dmenuEmotes[] = {"/home/voyager-1scripts/emoji.sh", NULL};
+static const char *dmenuWeb[] = {"/home/voyager-1scripts/bookmarks.sh", NULL};
+static const char *playFart[] = {"/home/voyager-1scripts/fart.sh", NULL};
 static const char *slock[] = {"slock", NULL};
 static const char *guiShot[] = { "flameshot", "gui",NULL };
-static const char *fullShot[] = { "flameshot", "full", "-c", "-p", "/home/voyager-1/Pictures/Screenshots",NULL };
+static const char *fullShot[] = { "flameshot", "full", "-c", "-p", "/home/voyager-1Pictures/Screenshots",NULL };
 
 static const Key keys[] = {
     /* modifier                     key            function                argument */
