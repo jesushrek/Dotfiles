@@ -3,11 +3,11 @@
 _user="$(logname)"
 _home="$(getent passwd "${_user}" | cut -d: -f6)"
 
-_dir_deps=""${_home}"/scripts/setup/Dependencies/"
-_list_dirs=""${_dir_deps}"/directories.txt"
-_list_services=""${_dir_deps}"/services.txt"
-_pkg_list=""${_home}"/pkglist.txt"
-_touch_pad_conf=""${_dir_deps}"/30-touchpad.conf"
+_dir_deps="${_home}/scripts/setup/Dependencies/"
+_list_dirs="${_dir_deps}/directories.txt"
+_list_services="${_dir_deps}/services.txt"
+_pkg_list="${_home}/pkglist.txt"
+_touch_pad_conf="${_dir_deps}/30-touchpad.conf"
 _xorg_conf_dir="/etc/X11/xorg.conf.d/"
 _name="Sandesh Paudel"
 _email="sandesh1234poudels@gmail.com"
@@ -59,7 +59,7 @@ setup_repo() {
 create_dirs_from_files() { 
     if test -f "${_list_dirs}"; then
         printf '[~] Creating Directories.\n'
-        mkdir "$(cat directories.txt | sed "s|{HOME}|/home/${_user}|g")"
+        mkdir $(cat "${_list_dirs}" | sed "s|{HOME}|/home/${_user}|g")
     fi
 }
 
