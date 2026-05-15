@@ -4,3 +4,6 @@ $HOME/video
 $HOME/music
 $HOME/.repo
 $HOME/Pictures/Screenshots
+/etc/pipewire/pipewire.conf.d
+/etc/pipewire/pipewire.conf.d
+/etc/alsa/conf.d
