@@ -46,7 +46,8 @@ setup_tlp() {
 
     if test "${_has_nvidia}" -eq 1; then
         if ! grep -q ^RUNTIME_PM_ENABLE /etc/tlp.conf; then
-            printf 'RUNTIME_PM_ENABLE=\"%s\\n"' "$(lspci -d 10de::03xx | grep NVIDIA | awk '{print $1}')" >> "${_tlp_conf}"
+            _nv_bus="$(lspci -d 10de::03xx | grep NVIDIA | awk '{print $1}')"
+            printf 'RUNTIME_PM_ENABLE=\"%s\"\n' "${_nv_bus}"  >> "${_tlp_conf}"
         fi
     fi
 }
@@ -143,7 +144,7 @@ install_suckless() {
 
 setup_power_control() { 
     printf '[~] Allowing Poweroff without password.\n'
-    printf '%%wheel ALL=(ALL:ALL) NOPASSWD: /bin/reboot, /bin/poweroff, /sbin/poweroff, /sbin/reboot\n' | sudo tee /etc/sudoers.d/power > /dev/null
+    printf '%%wheel ALL=(ALL:ALL) NOPASSWD: /bin/reboot, /bin/poweroff, /sbin/poweroff, /sbin/reboot\n' | tee /etc/sudoers.d/power > /dev/null
 }
 
 setup_pipewire_conf() { 
