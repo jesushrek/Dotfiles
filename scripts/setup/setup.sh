@@ -59,9 +59,7 @@ setup_repo() {
 create_dirs_from_files() { 
     if test -f "${_list_dirs}"; then
         printf '[~] Creating Directories.\n'
-        while read -r directory; do
-            mkdir -p "${directory}" && printf '[ok] Created %s.\n' "${directory}"
-        done < "${_list_dirs}"
+        mkdir "$(cat directories.txt | sed "s|{HOME}|/home/${_user}|g")"
     fi
 }
 
@@ -145,7 +143,7 @@ install_suckless() {
 
 setup_power_control() { 
     printf '[~] Allowing Poweroff without password.\n'
-    printf '%wheel ALL=(ALL:ALL) NOPASSWD: /bin/reboot /bin/poweroff' > /etc/sudoers.d/power > /dev/null
+    printf '%%wheel ALL=(ALL:ALL) NOPASSWD: /bin/reboot /bin/poweroff' | sudo tee /etc/sudoers.d/power > /dev/null
 }
 
 setup_pipewire_conf() { 
@@ -160,7 +158,7 @@ clean_up() {
     printf '[~] Finalizing.\n'
     chown -R "$_user":"$_user" "$_home"
     xbps-remove -OOo 
-    theme.sh "$(cat ~/.config/.current_theme)"
+    "${_home}/scripts/theme.sh" "$(cat $_home/.config/.current_theme)"
     xbps-reconfigure -fa 
     reboot
 }
