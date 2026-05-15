@@ -6,7 +6,7 @@ _home="$(getent passwd "${_user}" | cut -d: -f6)"
 _dir_deps=""${_home}"/scripts/setup/Dependencies/"
 _list_dirs=""${_dir_deps}"/directories.txt"
 _list_services=""${_dir_deps}"/services.txt"
-_pkg_list=""${_dir_deps}"/pkglist.txt"
+_pkg_list=""${_home}"/pkglist.txt"
 _touch_pad_conf=""${_dir_deps}"/30-touchpad.conf"
 _xorg_conf_dir="/etc/X11/xorg.conf.d/"
 _name="Sandesh Paudel"
@@ -122,7 +122,7 @@ install_pkgs() {
         if test "${_has_nvidia}" -eq 1; then
             xargs -a "${_pkg_list}"  xbps-install
         else
-            grep -v nvidia ~/.config/pkglist.txt | xargs -r  xbps-install -Syu
+            grep -iv nvidia "${_pkg_list}" | xargs -r  xbps-install -Syu
         fi
     fi
 }
@@ -167,10 +167,10 @@ clean_up() {
 
 setup_repo
 install_pkgs
+git_init
+configure_git
 setup_timezone
 set_groups
-configure_git
-git_init
 write_configs
 setup_tlp
 create_dirs_from_files
