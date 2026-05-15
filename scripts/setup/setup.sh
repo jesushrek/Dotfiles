@@ -8,6 +8,7 @@ _list_dirs="${_dir_deps}/directories.txt"
 _list_services="${_dir_deps}/services.txt"
 _pkg_list="${_home}/pkglist.txt"
 _touch_pad_conf="${_dir_deps}/30-touchpad.conf"
+_btr_fox="https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js"
 _xorg_conf_dir="/etc/X11/xorg.conf.d/"
 _name="Sandesh Paudel"
 _email="sandesh1234poudels@gmail.com"
@@ -18,6 +19,8 @@ _groups="wheel,audio,video,network"
 _wal_url="https://gitlab.com/shrek68/wallpapers"
 _git_url="https://github.com/jesushrek/dotfiles"
 _package_url="https://raw.githubusercontent.com/jesushrek/Dotfiles/refs/heads/master/.config/pkglist.txt"
+_ff_distri_dir="/usr/lib/firefox/distribution/"
+_ff_policies="${_dir_deps}/policies.json"
 
 printf '[~] Checking For Nvidia.\n'
 if lspci -d 10de::03xx | grep -q NVIDIA; then
@@ -155,6 +158,20 @@ setup_pipewire_conf() {
     ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 }
 
+setup_firefox_conf() { 
+    echo "[~] Creating Profile"
+    _moz_dir="${_home}/.config/mozilla/firefox"
+    firefox --CreateProfile "${_user}" --headless 
+    _profile="$(basename ~/.config/mozilla/firefox/*$_user*)"
+    _target_dir="${_moz_dir}/${_profile}"
+    curl -sL -o "${_target_dir}/user.js" "${_btr_fox}"
+
+    if test -d "${_ff_distri_dir}"
+        echo "[~] Installing Addons"
+        cp "${_ff_policies}" "${_ff_distri_dir}"
+    fi
+}
+
 clean_up() { 
     printf '[~] Finalizing.\n'
     chown -R "${_user}":"${_user}" "${_home}"
@@ -178,5 +195,6 @@ setup_vim_plug
 setup_pipewire_conf
 enable_services
 setup_power_control
+setup_firefox_conf
 install_suckless
 clean_up
