@@ -22,9 +22,9 @@ _package_url="https://raw.githubusercontent.com/jesushrek/Dotfiles/refs/heads/ma
 _ff_distri_dir="/usr/lib/firefox/distribution/"
 _ff_policies="${_dir_deps}/policies.json"
 
-printf '[~] Checking For Nvidia.\n'
+#printf '[~] Checking For Nvidia.\n'
 if lspci -d 10de::03xx | grep -q NVIDIA; then
-    printf '[ok] Nvidia Detected Opinion Rejected.\n'
+#    printf '[ok] Nvidia Detected Opinion Rejected.\n'
     _has_nvidia=1
 else
     printf '[x] Nvidia was not detected.\n'
@@ -159,15 +159,8 @@ setup_pipewire_conf() {
 }
 
 setup_firefox_conf() { 
-    echo "[~] Creating Profile"
-    _moz_dir="${_home}/.config/mozilla/firefox"
-    firefox --CreateProfile "${_user}" --headless 
-    _profile="$(basename ~/.config/mozilla/firefox/*$_user*)"
-    _target_dir="${_moz_dir}/${_profile}"
-    curl -sL -o "${_target_dir}/user.js" "${_btr_fox}"
-
-    if test -d "${_ff_distri_dir}"
-        echo "[~] Installing Addons"
+    if test -d "${_ff_distri_dir}"; then
+        echo "[~] Installing Firefox Addons"
         cp "${_ff_policies}" "${_ff_distri_dir}"
     fi
 }
@@ -182,19 +175,19 @@ clean_up() {
     reboot
 }
 
-setup_repo
-install_pkgs
-git_init
-configure_git
-setup_timezone
-set_groups
-write_configs
-setup_tlp
-create_dirs_from_files
-setup_vim_plug
-setup_pipewire_conf
-enable_services
-setup_power_control
+#setup_repo
+#install_pkgs
+#git_init
+#configure_git
+#setup_timezone
+#set_groups
+#write_configs
+#setup_tlp
+#create_dirs_from_files
+#setup_vim_plug
+#setup_pipewire_conf
+#enable_services
+#setup_power_control
 setup_firefox_conf
-install_suckless
-clean_up
+#install_suckless
+#clean_up
