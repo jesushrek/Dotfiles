@@ -143,7 +143,7 @@ install_suckless() {
 
 setup_power_control() { 
     printf '[~] Allowing Poweroff without password.\n'
-    printf '%%wheel ALL=(ALL:ALL) NOPASSWD: /bin/reboot /bin/poweroff' | sudo tee /etc/sudoers.d/power > /dev/null
+    printf '%%wheel ALL=(ALL:ALL) NOPASSWD: /bin/reboot /bin/poweroff\n' | sudo tee /etc/sudoers.d/power > /dev/null
 }
 
 setup_pipewire_conf() { 
