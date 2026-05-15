@@ -132,7 +132,7 @@ install_pkgs() {
 install_suckless() { 
     printf '[~] Installing Suckless Software.\n'
     for _prog in "${_home}/sucksless"/*; do
-        grep -rl "voyager-1" "${_prog}" | xargs -r sed -i "s|/home/voyager-1/|${_home}|g"
+        grep -rl "voyager-1" "${_prog}" | xargs -r sed -i "s|/home/voyager-1|${_home}|g"
     done
 
     for _prog in "${_home}/sucksless"/*; do
