@@ -11,10 +11,13 @@ base-system
 brillo
 chrony
 clipmenu
+cmake
+cronie
 curl
 dumb_runtime_dir
 dunst
 fastfetch
+ffmpeg
 firefox
 flameshot
 gdb
@@ -26,6 +29,7 @@ gvim
 imlib2-devel
 intel-ucode
 intel-video-accel
+jq
 libX11-devel
 libXcursor-devel
 libXft-devel
@@ -35,6 +39,7 @@ libXrandr-devel
 libglvnd-devel
 mesa-intel-dri
 mesa-vulkan-intel
+mpv
 nerd-fonts-symbols-ttf
 noto-fonts-cjk
 noto-fonts-emoji
@@ -45,8 +50,8 @@ pipewire
 polkit
 pywal
 qalculate
-qtcreator
 redshift
+socklog-void
 sxiv
 tlp
 void-repo-multilib

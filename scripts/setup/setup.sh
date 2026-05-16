@@ -24,7 +24,7 @@ _ff_policies="${_dir_deps}/policies.json"
 
 #printf '[~] Checking For Nvidia.\n'
 if lspci -d 10de::03xx | grep -q NVIDIA; then
-#    printf '[ok] Nvidia Detected Opinion Rejected.\n'
+    #    printf '[ok] Nvidia Detected Opinion Rejected.\n'
     _has_nvidia=1
 else
     printf '[x] Nvidia was not detected.\n'

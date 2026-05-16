@@ -17,7 +17,9 @@ set -o vi
 #aliases 
 alias ls='ls --color=auto'
 alias vi='vim'
-alias st_here='st >/dev/null 2>&1 & disown'
+st_here() { 
+    st >/dev/null 2>&1 & disown 
+}
 alias asdf='cd ~/personal/projects'
 alias convertor=~/scripts/convertor
 alias grep='grep --color=auto'
