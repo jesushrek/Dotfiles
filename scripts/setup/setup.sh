@@ -97,7 +97,6 @@ git_init() {
     if ! test -d "${_home}/.dotfiles"; then
         printf '[~] Initilizing Dotfiles.\n'
         git clone --bare "${_git_url}" "${_home}/.dotfiles"
-        local _df
         _df="git --git-dir=${_home}/.dotfiles/ --work-tree=${_home}"
         "${_df}" checkout -f
         "${_df}" config status.showUntrackedFiles no
@@ -159,10 +158,50 @@ setup_pipewire_conf() {
 }
 
 setup_firefox_conf() { 
-    if test -d "${_ff_distri_dir}"; then
-        echo "[~] Installing Firefox Addons"
-        cp "${_ff_policies}" "${_ff_distri_dir}"
+    printf '[~] Creating A Profile.\n'
+    chpst -u ${_user} env HOME=${_home} firefox -headless -CreateProfile "${_user}"
+
+    printf '[~] Generating The Required file(s).\n'
+    chpst -u ${_user} env HOME=${_home} firefox -headless > /dev/null 2>&1 & _firefox_pid="${!}"
+    sleep 2
+    kill "${_firefox_pid}"
+
+    _ff_dir="${_home}/.config/mozilla/firefox"
+    _ini_p="${_ff_dir}/profiles.ini"
+    _ff_p_dir="$(find ${_ff_dir} -name "*${_user}*")"
+    _ff_p_name="${_ff_p_dir##*/}"
+    _b_ff_url="https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js"
+
+    printf '[~] Installing the user.js\n'
+    curl "${_b_ff_url}" -o "${_ff_p_dir}/user.js"
+
+    if test -f "${_ini_p}" ; then
+        _header_hash="$(grep -i Install "${_ini_p}")"
+        printf '[~] Backing up the %s file\n' "${_ini_p}"
+        mv "${_ini_p}" "${_ini_p}.bak"
     fi
+
+    printf '[~] Writing a fresh profiles.ini\n'
+
+    cat <<EOF > "${_ini_p}"
+${_header_hash}
+Default=${_ff_p_name}
+Locked=1
+
+[Profile0]
+Name=${_user}
+IsRelative=0
+Path=${_ff_p_dir}
+Default=1
+
+[General]
+Version=2
+EOF
+
+if test -d "${_ff_distri_dir}"; then
+    echo "[~] Installing Firefox Addons"
+    cp "${_ff_policies}" "${_ff_distri_dir}"
+fi
 }
 
 clean_up() { 

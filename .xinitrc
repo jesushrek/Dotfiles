@@ -26,7 +26,8 @@ xset s 298 2
 setxkbmap -layout us,np -variant ,olpc -option grp:alt_space_toggle &
 
 #themes
-wal -R
+#wal -R
+theme.sh --random
 ~/.config/.wallpaper.sh &
 redshift &
 picom &
