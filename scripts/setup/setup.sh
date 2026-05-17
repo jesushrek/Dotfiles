@@ -8,7 +8,7 @@ _list_dirs="${_dir_deps}/directories.txt"
 _list_services="${_dir_deps}/services.txt"
 _pkg_list="${_home}/pkglist.txt"
 _touch_pad_conf="${_dir_deps}/30-touchpad.conf"
-_btr_fox="https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js"
+_usr_js_url="https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js"
 _xorg_conf_dir="/etc/X11/xorg.conf.d/"
 _name="Sandesh Paudel"
 _email="sandesh1234poudels@gmail.com"
@@ -170,14 +170,13 @@ setup_firefox_conf() {
     _ini_p="${_ff_dir}/profiles.ini"
     _ff_p_dir="$(find ${_ff_dir} -name "*${_user}*")"
     _ff_p_name="${_ff_p_dir##*/}"
-    _b_ff_url="https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js"
 
     printf '[~] Installing the user.js\n'
-    curl "${_b_ff_url}" -o "${_ff_p_dir}/user.js"
+    curl "${_usr_js_url}" -o "${_ff_p_dir}/user.js"
 
-    if test -f "${_ini_p}" ; then
+    if test -f "${_ini_p}"; then
         _header_hash="$(grep -i Install "${_ini_p}")"
-        printf '[~] Backing up the %s file\n' "${_ini_p}"
+        printf '[~] Backing up the %s file.\n' "${_ini_p}"
         mv "${_ini_p}" "${_ini_p}.bak"
     fi
 
