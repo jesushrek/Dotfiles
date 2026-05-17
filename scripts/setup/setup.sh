@@ -22,9 +22,9 @@ _package_url="https://raw.githubusercontent.com/jesushrek/Dotfiles/refs/heads/ma
 _ff_distri_dir="/usr/lib/firefox/distribution/"
 _ff_policies="${_dir_deps}/policies.json"
 
-#printf '[~] Checking For Nvidia.\n'
+printf '[~] Checking For Nvidia.\n'
 if lspci -d 10de::03xx | grep -q NVIDIA; then
-    #    printf '[ok] Nvidia Detected Opinion Rejected.\n'
+    printf '[ok] Nvidia Detected Opinion Rejected.\n'
     _has_nvidia=1
 else
     printf '[x] Nvidia was not detected.\n'
@@ -57,7 +57,7 @@ setup_tlp() {
 
 setup_repo() { 
     printf '[~] Setting Up Repos.\n'
-    xbps-install void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
+    xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 }
 
 create_dirs_from_files() { 
@@ -121,7 +121,7 @@ install_pkgs() {
     if test -f "${_pkg_list}"; then
         printf '[~] Installing Required Packages.\n'
         if test "${_has_nvidia}" -eq 1; then
-            xargs -a "${_pkg_list}"  xbps-install
+            xargs -a "${_pkg_list}"  xbps-install -Syu
         else
             grep -iv nvidia "${_pkg_list}" | xargs -r  xbps-install -Syu
         fi
