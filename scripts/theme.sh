@@ -53,7 +53,8 @@ apply_theme() {
     fi
 
     # Set wallpaper
-    echo "xwallpaper --stretch "$WALLPAPER_DIR/$wallpaper"" > ~/.config/.wallpaper.sh && ~/.config/.wallpaper.sh
+    echo "xwallpaper --stretch "$WALLPAPER_DIR/$wallpaper"" > ~/.config/.wallpaper.sh 
+    chmod +x ~/.config/.wallpaper.sh && ~/.config/.wallpaper.sh
 
     # Set light/dark mode
     "$SCRIPTS_DIR/lightxDark.sh" "$mode"

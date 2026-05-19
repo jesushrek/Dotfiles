@@ -222,11 +222,11 @@ setup_repo
 install_pkgs
 git_init
 configure_git
+create_dirs_from_files
 setup_timezone
 set_groups
 write_configs
 setup_tlp
-create_dirs_from_files
 setup_vim_plug
 setup_pipewire_conf
 enable_services
