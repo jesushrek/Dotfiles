@@ -1,1 +1,9 @@
-{HOME}/personal/projects {HOME}/personal/pdfs {HOME}/video {HOME}/music {HOME}/.repo {HOME}/Pictures/Screenshots /etc/pipewire/pipewire.conf.d /etc/alsa/conf.d /usr/lib/firefox/distribution
+{HOME}/personal/projects 
+{HOME}/personal/pdfs 
+{HOME}/video 
+{HOME}/music 
+{HOME}/.repo 
+{HOME}/Pictures/Screenshots 
+/etc/pipewire/pipewire.conf.d 
+/etc/alsa/conf.d 
+/usr/lib/firefox/distribution

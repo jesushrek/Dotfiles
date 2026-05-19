@@ -32,8 +32,10 @@ else
 fi
 
 configure_git() { 
+    chpst -u ${_user} env HOME=${_home} /bin/sh <<EOF
     git config --global user.email "${_email}"
     git config --global user.name "${_name}"
+EOF
 }
 
 write_configs() { 
@@ -50,7 +52,7 @@ setup_tlp() {
     if test "${_has_nvidia}" -eq 1; then
         if ! grep -q ^RUNTIME_PM_ENABLE /etc/tlp.conf; then
             _nv_bus="$(lspci -d 10de::03xx | grep NVIDIA | awk '{print $1}')"
-            printf 'RUNTIME_PM_ENABLE=\"%s\"\n' "${_nv_bus}"  >> "${_tlp_conf}"
+            printf 'RUNTIME_PM_ENABLE="%s"\n' "${_nv_bus}"  >> "${_tlp_conf}"
         fi
     fi
 }
@@ -63,7 +65,10 @@ setup_repo() {
 create_dirs_from_files() { 
     if test -f "${_list_dirs}"; then
         printf '[~] Creating Directories.\n'
-        mkdir $(cat "${_list_dirs}" | sed "s|{HOME}|/home/${_user}|g")
+        while read -r directory; do
+            _dir_=$(printf '%s' "${directory}" | sed "s|{HOME}|${_home}|g")
+            mkdir -p "${_dir_}"
+        done < "${_list_dirs}"
     fi
 }
 
@@ -93,14 +98,13 @@ set_groups() {
 }
 
 git_init() { 
-    git lfs install
-    if ! test -d "${_home}/.dotfiles"; then
-        printf '[~] Initilizing Dotfiles.\n'
-        git clone --bare "${_git_url}" "${_home}/.dotfiles"
-        _df="git --git-dir=${_home}/.dotfiles/ --work-tree=${_home}"
-        "${_df}" checkout -f
-        "${_df}" config status.showUntrackedFiles no
-    fi
+    if  ! test -d "${_home}/.dotfiles"; then
+        chpst -u ${_user} env HOME=${_home} /bin/sh << EOF
+git lfs install
+git clone --bare https://github.com/jesushrek/dotfiles "${_home}/.dotfiles"
+_df="/usr/bin/git --git-dir="${_home}/.dotfiles/" --work-tree="${_home}""
+\${_df} checkout -f
+\${_df} config --local status.showUntrackedFiles no
 
     if  ! test -d "${_home}/wallpapers"; then
         printf '[~] Initializing Wallpapers.\n'
@@ -109,6 +113,8 @@ git_init() {
     fi
 
     . ${_home}/.bashrc
+EOF
+    fi
 }
 
 install_pkgs() { 
@@ -207,7 +213,6 @@ clean_up() {
     printf '[~] Finalizing.\n'
     chown -R "${_user}":"${_user}" "${_home}"
     xbps-remove -OOo 
-    "${_home}/scripts/theme.sh" "$(cat $_home/.config/.current_theme)"
     xbps-reconfigure -fa 
     rm "${_pkg_list}"
     reboot
