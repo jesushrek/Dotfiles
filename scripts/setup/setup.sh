@@ -66,8 +66,8 @@ create_dirs_from_files() {
     if test -f "${_list_dirs}"; then
         printf '[~] Creating Directories.\n'
         while read -r directory; do
-            _dir_=$(printf '%s' "${directory}" | sed "s|{HOME}|${_home}|g") && printf '%s' "${directory}"
-            mkdir -p "${_dir_}"
+            _dir_=$(printf '%s' "${directory}" | sed "s|{HOME}|${_home}|g") 
+            mkdir -p "${_dir_}" && printf '[~] Created Directory %s\n' "${directory}"
         done < "${_list_dirs}"
     fi
 }
