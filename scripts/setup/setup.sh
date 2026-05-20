@@ -215,6 +215,7 @@ clean_up() {
     xbps-remove -OOo 
     xbps-reconfigure -fa 
     rm "${_pkg_list}"
+    sleep 5 
     reboot
 }
 

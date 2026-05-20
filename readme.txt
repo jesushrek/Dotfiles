@@ -1,7 +1,7 @@
 To replicate it on another system.
 
 To automatically set up
-curl -sL https://jesushrek.github.io/install | sh
+curl -sL https://jesushrek.github.io/void/install.sh | sh
 
 For manual 
 git clone --bare https://github.com/jesushrek/dotfiles $HOME/.dotfiles
