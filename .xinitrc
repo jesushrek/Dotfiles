@@ -40,6 +40,7 @@ dunst -conf ~/.config/dunst/dunstrc_xr_colors &
 # bar and lock
 ~/scripts/bar.sh &
 xss-lock -n ~/scripts/detect_fullscreen_and_move_mouse.sh -- slock &
+kdeconnectd &
 
 #dwm
 exec dbus-launch --exit-with-session "${twm}" 2> ~/.dwm.log
