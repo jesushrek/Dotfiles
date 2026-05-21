@@ -67,7 +67,7 @@ create_dirs_from_files() {
         printf '[~] Creating Directories.\n'
         while read -r directory; do
             _dir_=$(printf '%s' "${directory}" | sed "s|{HOME}|${_home}|g") 
-            mkdir -p "${_dir_}" && printf '[~] Created Directory %s\n' "${directory}"
+            mkdir -p "${_dir_}" && printf '[ok] Created Directory %s\n' "${directory}"
         done < "${_list_dirs}"
     fi
 }
@@ -88,7 +88,7 @@ setup_vim_plug() {
 
 setup_timezone() {
     printf '[~] Setting Time Zone To %s.\n' "${_timezone}"
-    ln -sf "/usr/share/zoneinfo/${_timezone}" /etc/localtime && printf '[ok] Set Time Jone To %s\n' "${_timezone}"
+    ln -sf "/usr/share/zoneinfo/${_timezone}" /etc/localtime && printf '[ok] Set TimeJone To %s\n' "${_timezone}"
     hwclock --systohc --utc
 }
 
@@ -98,11 +98,11 @@ set_groups() {
 }
 
 git_init() { 
+    chpst -u ${_user} env HOME=${_home} /bin/sh << EOF
     if  ! test -d "${_home}/.dotfiles"; then
-        chpst -u ${_user} env HOME=${_home} /bin/sh << EOF
 git lfs install
-git clone --bare https://github.com/jesushrek/dotfiles "${_home}/.dotfiles"
-_df="/usr/bin/git --git-dir="${_home}/.dotfiles/" --work-tree="${_home}""
+git clone --bare "${_git_url}" "${_home}/.dotfiles"
+_df="/usr/bin/git --git-dir=${_home}/.dotfiles/ --work-tree=${_home}"
 \${_df} checkout -f
 \${_df} config --local status.showUntrackedFiles no
 
@@ -113,8 +113,8 @@ _df="/usr/bin/git --git-dir="${_home}/.dotfiles/" --work-tree="${_home}""
     fi
 
     . ${_home}/.bashrc
-EOF
     fi
+EOF
 }
 
 install_pkgs() { 
