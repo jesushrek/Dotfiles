@@ -181,7 +181,7 @@ setup_firefox_conf() {
     curl "${_usr_js_url}" -o "${_ff_p_dir}/user.js"
 
     if test -f "${_ini_p}"; then
-        _header_hash="$(grep -i Install "${_ini_p}")"
+        _header_hash="$(grep -i "^\[Install*" "${_ini_p}")"
         printf '[~] Backing up the %s file.\n' "${_ini_p}"
         mv "${_ini_p}" "${_ini_p}.bak"
     fi
