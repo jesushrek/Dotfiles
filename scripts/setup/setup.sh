@@ -32,9 +32,9 @@ else
 fi
 
 configure_git() { 
-    chpst -u ${_user} env HOME=${_home} /bin/sh <<EOF
-    git config --global user.email "${_email}"
-    git config --global user.name "${_name}"
+    chpst -u "${_user}" env HOME="${_home}" /bin/sh <<EOF
+git config --global user.email "${_email}"
+git config --global user.name "${_name}"
 EOF
 }
 
@@ -98,7 +98,7 @@ set_groups() {
 }
 
 git_init() { 
-    chpst -u ${_user} env HOME=${_home} /bin/sh << EOF
+    chpst -u "${_user}" env HOME="${_home}" /bin/sh << EOF
     if  ! test -d "${_home}/.dotfiles"; then
 git lfs install
 git clone --bare "${_git_url}" "${_home}/.dotfiles"
@@ -165,10 +165,10 @@ setup_pipewire_conf() {
 
 setup_firefox_conf() { 
     printf '[~] Creating A Profile.\n'
-    chpst -u ${_user} env HOME=${_home} firefox -headless -CreateProfile "${_user}"
+    chpst -u "${_user}" env HOME="${_home}" firefox -headless -CreateProfile "${_user}"
 
     printf '[~] Generating The Required file(s).\n'
-    chpst -u ${_user} env HOME=${_home} firefox -headless > /dev/null 2>&1 & _firefox_pid="${!}"
+    chpst -u "${_user}" env HOME="${_home}" firefox -headless > /dev/null 2>&1 & _firefox_pid=$!
     sleep 2
     kill "${_firefox_pid}"
 
