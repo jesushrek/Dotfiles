@@ -32,6 +32,7 @@ else
 fi
 
 configure_git() { 
+    printf '[~] Configuring Git.\n'
     chpst -u "${_user}" env HOME="${_home}" /bin/sh <<EOF
 git config --global user.email "${_email}"
 git config --global user.name "${_name}"

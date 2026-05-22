@@ -16,17 +16,13 @@ GET_UUID_FROM_NETWORK() {
     nmcli -t -f NAME,UUID connection show | grep -m 1 "^$1:" | cut -d':' -f2
 }
 
-GET_BSSID_FROM_NETWORK() { 
-    nmcli -t -f SSID,BSSID device wifi list | grep -m 1 "^$1:" | cut -d':' -f2- | sed 's/\\//g'
-}
-
 MAIN() {
     connected_net=$(GET_CONNECTED_NETWORK)
 
     selection=$(LIST_NETWORKS | dmenu -p "Active: $connected_net" -l 15)
     [ -z "$selection" ] && exit 0
 
-    selected_net=$(echo "$selection" | sed 's/^ *[^ ]* *//' | awk '{print $1}')
+    selected_net=$(echo "$selection" | awk '{print $1}')
 
     if nmcli connection show | grep -q "^$selected_net "; then
         action=$(PROMPT_KNOWN_NETWORK_ACTION)
@@ -52,8 +48,7 @@ MAIN() {
         passcode=$(printf "" | dmenu -p "Password for $selected_net:")
         [ -z "$passcode" ] && continue
 
-        bssid=$(GET_BSSID_FROM_NETWORK "$selected_net")
-        nmcli device wifi connect "$bssid" password "$passcode"
+        nmcli device wifi connect "$selected_net" password "$passcode"
     fi
 }
 

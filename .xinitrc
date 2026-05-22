@@ -39,6 +39,7 @@ dunst -conf ~/.config/dunst/dunstrc_xr_colors &
 
 # bar and lock
 ~/scripts/bar.sh &
+~/scripts/dunst.sh &
 xss-lock -n ~/scripts/detect_fullscreen_and_move_mouse.sh -- slock &
 kdeconnectd &
 
