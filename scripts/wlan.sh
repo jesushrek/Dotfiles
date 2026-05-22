@@ -6,7 +6,7 @@ _selected_wifi_bssid="$(printf '%s' "${_selected_wifi}" | awk '{print $1}')"
 _selected_wifi_name="$(printf '%s' "${_selected_wifi}" | awk '{print $2}')"
 
 if nmcli -f "NAME" connection | grep -q "${_selected_wifi_name}"; then
-    _option="$(printf 'Connect\nForget\nAutoReconnectOff\nDisconnect' | dmenu -p "Choose")" || exit 0
+    _option="$(printf 'Connect\nForget\nAutoReconnectOff\nDisconnect\nAutoReconnectON' | dmenu -p "Choose")" || exit 0
     case "${_option}" in 
         "Connect")
             nmcli device wifi connect "${_selected_wifi_bssid}" && 
@@ -24,6 +24,11 @@ if nmcli -f "NAME" connection | grep -q "${_selected_wifi_name}"; then
             nmcli connection down "${_selected_wifi_bssid}" &&
                 notify-send "Disconnecting Wifi"
             ;;
+        "AutoReconnectON")
+            nmcli connection modify "${_selected_wifi_bssid}" connection.autoconnect no && 
+                notify-send "Patching Up Again"
+            ;;
+ 
     esac
 else 
     _passcode="$(dmenu -p "Password")"
