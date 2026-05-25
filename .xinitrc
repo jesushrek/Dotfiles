@@ -20,6 +20,7 @@ if test -f "$usermodmap" ; then xmodmap "$usermodmap"; fi
 
 # auto lock  
 export MOUSE_DIRECTION=left
+export QT_QPA_PLATFORMTHEME=qt5ct
 xset s 298 2
 
 #keyboard layouts

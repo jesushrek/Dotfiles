@@ -3,6 +3,7 @@
 WALLPAPER_DIR="$HOME/wallpapers"
 SCRIPTS_DIR="$HOME/scripts"
 THEME_FILE="$HOME/.config/.current_theme"
+OOMOX_REPO="$HOME/.repo/oomox-gtk-theme"
 
 # Theme configuration: theme_name|wal_theme|wallpaper|mode
 declare -A THEME_CONFIG=(
@@ -27,7 +28,9 @@ declare -A THEME_CONFIG=(
     ["base16-Harmonic"]="base16-harmonic|tortle.png|dark"
     ["gruvbox-soft-light"]="base16-gruvbox-soft|kiwi.png|light"
     ["dkeg-vans"]="dkeg-vans|stars.png|dark"
+    ["dkeg-stv"]="dkeg-stv|Spritied_away.png|dark"
     ["base16-mocha"]="base16-mocha|parents.png|dark"
+    ["base16-ocean"]="base16-ocean|flowers.png|dark"
 )
 
 get_theme_selection() {
@@ -56,11 +59,18 @@ apply_theme() {
     echo "xwallpaper --stretch "$WALLPAPER_DIR/$wallpaper"" > ~/.config/.wallpaper.sh 
     chmod +x ~/.config/.wallpaper.sh && ~/.config/.wallpaper.sh
 
-    # Set light/dark mode
-    "$SCRIPTS_DIR/lightxDark.sh" "$mode"
+    # Set light/dark mode if exists
+    if [ -f "$SCRIPTS_DIR/lightxDark.sh" ]; then
+        "$SCRIPTS_DIR/lightxDark.sh" "$mode"
+    fi
 
     # Save current theme
     echo "$theme_name" > "$THEME_FILE"
+
+    #Set OOMOX Theme if the directory exists
+    if [ -d "$OOMOX_REPO" ]; then
+        $OOMOX_REPO/change_color.sh -o my-xres-theme $OOMOX_REPO/test/colors/xresources/xresources
+    fi
 }
 
 refresh_resources() {

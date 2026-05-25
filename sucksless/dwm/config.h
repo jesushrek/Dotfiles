@@ -80,9 +80,9 @@ static const char *mutevol[]    = { "/usr/bin/wpctl",   "set-mute",   "@DEFAULT_
 ResourcePref resources[] = {
     { "dwm.color0",             STRING,  &normbgcolor },
     { "dwm.color0",             STRING,  &normbordercolor },
-    { "dwm.color15",            STRING,  &normfgcolor },
-    { "dwm.color7",             STRING,  &selbgcolor },
-    { "dwm.color15",            STRING,  &selbordercolor },
+    { "dwm.color7",            STRING,  &normfgcolor },
+    { "dwm.color15",             STRING,  &selbgcolor },
+    { "dwm.color7",            STRING,  &selbordercolor },
     { "dwm.color0",            STRING,  &selfgcolor },
     { "borderpx",          	INTEGER, &borderpx },
     { "snap",          		INTEGER, &snap },

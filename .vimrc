@@ -1,6 +1,5 @@
 call plug#begin()
-Plug 'ap/vim-css-color'
-Plug 'lervag/vimtex'
+Plug 'gko/vim-coloresque'
 call plug#end()
 set t_Co=16
 

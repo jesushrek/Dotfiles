@@ -1,9 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 _connected_to="$(nmcli -t -f NAME,TYPE connection show --active | head -n 1)"
 _selected_wifi="$(nmcli --color no device wifi list | grep -v "^\*" | dmenu -p "${_connected_to}" -l 15)" || exit 0
 _selected_wifi_bssid="$(printf '%s' "${_selected_wifi}" | awk '{print $1}')"
 _selected_wifi_name="$(printf '%s' "${_selected_wifi}" | awk '{print $2}')"
+_selected_wifi_uuid="$(nmcli -t -f NAME,UUID connection | grep "${_selected_wifi_name}" | awk -F: '{print $2}')"
 
 if nmcli -f "NAME" connection | grep -q "${_selected_wifi_name}"; then
     _option="$(printf 'Connect\nForget\nAutoReconnectOff\nDisconnect\nAutoReconnectON' | dmenu -p "Choose")" || exit 0
@@ -17,7 +18,7 @@ if nmcli -f "NAME" connection | grep -q "${_selected_wifi_name}"; then
                 notify-send "Wait" "What Network Again?"
             ;;
         "AutoReconnectOff")
-            nmcli connection modify "${_selected_wifi_bssid}" connection.autoconnect no && 
+            nmcli connection modify "${_selected_wifi_uuid}" connection.autoconnect no && 
                 notify-send "Breaking Up"
             ;;
         "Disconnect")
@@ -25,12 +26,11 @@ if nmcli -f "NAME" connection | grep -q "${_selected_wifi_name}"; then
                 notify-send "Disconnecting Wifi"
             ;;
         "AutoReconnectON")
-            nmcli connection modify "${_selected_wifi_bssid}" connection.autoconnect no && 
+            nmcli connection modify "${_selected_wifi_uuid}" connection.autoconnect no && 
                 notify-send "Patching Up Again"
             ;;
- 
+
     esac
 else 
-    _passcode="$(dmenu -p "Password")"
     nmcli device wifi connect "${_selected_wifi_bssid}" password "${_passcode}"
 fi
