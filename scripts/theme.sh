@@ -55,6 +55,14 @@ apply_theme() {
         wal --theme "$wal_theme"
     fi
 
+    # Reload dwm
+    xdotool key Super+F5
+
+    # Set OOMOX Theme if the directory exists
+    if [ -d "$OOMOX_REPO" ]; then
+        $OOMOX_REPO/change_color.sh -o my-xres-theme $OOMOX_REPO/test/colors/xresources/xresources
+    fi
+
     # Set wallpaper
     echo "xwallpaper --stretch "$WALLPAPER_DIR/$wallpaper"" > ~/.config/.wallpaper.sh 
     chmod +x ~/.config/.wallpaper.sh && ~/.config/.wallpaper.sh
@@ -66,16 +74,10 @@ apply_theme() {
 
     # Save current theme
     echo "$theme_name" > "$THEME_FILE"
-
-    #Set OOMOX Theme if the directory exists
-    if [ -d "$OOMOX_REPO" ]; then
-        $OOMOX_REPO/change_color.sh -o my-xres-theme $OOMOX_REPO/test/colors/xresources/xresources
-    fi
 }
 
 refresh_resources() {
     local theme_name="$1"
-    xdotool key Super+F5
     "$SCRIPTS_DIR/dunst.sh"
     pkill dunst; dunst -conf ~/.config/dunst/dunstrc_xr_colors &
     notify-send "Applied" "$theme_name"
