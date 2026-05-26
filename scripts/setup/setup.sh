@@ -98,7 +98,7 @@ set_groups() {
     usermod -aG "${_groups}" "${_user}" 
 }
 
-git_init() { 
+dotfiles_init() { 
     chpst -u "${_user}" env HOME="${_home}" /bin/sh << EOF
     if  ! test -d "${_home}/.dotfiles"; then
 git lfs install
@@ -114,6 +114,7 @@ _df="/usr/bin/git --git-dir=${_home}/.dotfiles/ --work-tree=${_home}"
     fi
 
     . ${_home}/.bashrc
+    ${_home}/scripts/theme.sh "$(cat ~/.config/.current_theme)"
     fi
 EOF
 }
@@ -208,6 +209,15 @@ if test -d "${_ff_distri_dir}"; then
     echo "[~] Installing Firefox Addons"
     cp "${_ff_policies}" "${_ff_distri_dir}"
 fi
+
+_colors_css="${_home}/.cache/wal/colors.css"
+_firefox_dotfiles="${_home}/.config/firefox/chrome/"
+
+printf '[~] Setting Firefox Theme.\n'
+chpst -u "${_user}" env HOME="${_home}" /bin/sh <<EOF
+ln -s "${_firefox_dotfiles}" "${_ff_p_dir}/chrome"
+ln -s "${_colors_css}" "${_ff_p_dir}/chrome/colors.css"
+EOF
 }
 
 clean_up() { 
@@ -222,7 +232,7 @@ clean_up() {
 
 setup_repo
 install_pkgs
-git_init
+dotfiles_init
 configure_git
 create_dirs_from_files
 setup_timezone
