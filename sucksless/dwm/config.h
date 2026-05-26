@@ -6,7 +6,7 @@ static unsigned int borderpx  = 1;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static char *fonts[]               = { "monospace:size=11;2","Noto Sans Devanagari UI:size=12","Symbols Nerd Font Mono:size=11:style=Regular" };
+static char *fonts[]          = { "monospace:size=11;2","Noto Sans Devanagari UI:size=12","Symbols Nerd Font Mono:size=11:style=Regular" };
 static char dmenufont[]       = "monospace:size=10";
 
 static char normbgcolor[]           = "#222222";
@@ -78,19 +78,19 @@ static const char *mutevol[]    = { "/usr/bin/wpctl",   "set-mute",   "@DEFAULT_
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-    { "dwm.color0",             STRING,  &normbgcolor },
-    { "dwm.color0",             STRING,  &normbordercolor },
-    { "dwm.color7",            STRING,  &normfgcolor },
-    { "dwm.color15",             STRING,  &selbgcolor },
-    { "dwm.color7",            STRING,  &selbordercolor },
-    { "dwm.color0",            STRING,  &selfgcolor },
-    { "borderpx",          	INTEGER, &borderpx },
-    { "snap",          		INTEGER, &snap },
-    { "showbar",          	INTEGER, &showbar },
-    { "topbar",          	INTEGER, &topbar },
-    { "nmaster",          	INTEGER, &nmaster },
-    { "resizehints",       	INTEGER, &resizehints },
-    { "mfact",      	 	FLOAT,   &mfact },
+		{ "color0",             STRING,  &normbgcolor },
+		{ "color0",             STRING,  &normbordercolor },
+		{ "color7",             STRING,  &normfgcolor },
+		{ "color7",             STRING,  &selbgcolor },
+		{ "color7",             STRING,  &selbordercolor },
+		{ "color0",             STRING,  &selfgcolor },
+		{ "borderpx",          	INTEGER, &borderpx },
+		{ "snap",          		INTEGER, &snap },
+		{ "showbar",          	INTEGER, &showbar },
+		{ "topbar",          	INTEGER, &topbar },
+		{ "nmaster",          	INTEGER, &nmaster },
+		{ "resizehints",       	INTEGER, &resizehints },
+		{ "mfact",      	 	FLOAT,   &mfact },
 };
 
 //static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
@@ -120,7 +120,7 @@ static const Key keys[] = {
     { MODKEY,                       XK_Tab,        view,                   {0} },
     { MODKEY,                       XK_p,          killclient,             {0} },
     { MODKEY|ShiftMask,             XK_q,          quit,                   {0} },
-    //	{ MODKEY|ShiftMask,             XK_F5,         xrdb,                   {.v = NULL } },
+    { MODKEY,                       XK_F5,         xrdb,                   {.v = NULL } },
     { MODKEY,                       XK_t,          setlayout,              {.v = &layouts[0]} },
     { MODKEY,                       XK_f,          setlayout,              {.v = &layouts[1]} },
     { MODKEY,                       XK_o,          setlayout,              {.v = &layouts[2]} },
