@@ -8,7 +8,7 @@ while true; do
     _date="$(convertor -atb $(date "+%Y %m %d"))"
     _battery="$(cat /sys/class/power_supply/BAT0/capacity)"
 
-    _text="$(echo "[  "${_date}" |  "${_current_date}" |  "${_battery}"% ]" | _devnagari)"
+    _text="$(echo "[  "${_date}" ∣  "${_current_date}" ∣  "${_battery}"% ]" | _devnagari)"
 
     xsetroot -name "${_text}"
 #    ~/scripts/sleepReminder.sh

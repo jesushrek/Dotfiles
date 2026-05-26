@@ -7,10 +7,10 @@ static unsigned int snap      = 32;       /* snap pixel */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
 static char *fonts[]          = { 
-    "monospace:size=13",
     "Matangi Semibold:size=11:antialias=true:hinting=true",
     "Symbols Nerd Font Mono:size=13:style=Regular",
     "Noto Sans Devanagari UI:style=Regular:size=11:antialias=true:hinting=true",
+    "monospace:size=13",
 };
 static char dmenufont[]       = "monospace:size=10";
 
@@ -88,7 +88,7 @@ ResourcePref resources[] = {
 		{ "color7",             STRING,  &normfgcolor },
 		{ "color12",             STRING,  &selbgcolor },
 		{ "color7",             STRING,  &selbordercolor },
-		{ "color0",             STRING,  &selfgcolor },
+		{ "color15",             STRING,  &selfgcolor },
 		{ "borderpx",          	INTEGER, &borderpx },
 		{ "snap",          		INTEGER, &snap },
 		{ "showbar",          	INTEGER, &showbar },
