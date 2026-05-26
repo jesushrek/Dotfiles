@@ -6,7 +6,12 @@ static unsigned int borderpx  = 1;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static char *fonts[]          = { "monospace:size=11;2","Noto Sans Devanagari UI:size=12","Symbols Nerd Font Mono:size=11:style=Regular" };
+static char *fonts[]          = { 
+    "monospace:size=13",
+    "Matangi Semibold:size=11:antialias=true:hinting=true",
+    "Symbols Nerd Font Mono:size=13:style=Regular",
+    "Noto Sans Devanagari UI:style=Regular:size=11:antialias=true:hinting=true",
+};
 static char dmenufont[]       = "monospace:size=10";
 
 static char normbgcolor[]           = "#222222";
@@ -81,7 +86,7 @@ ResourcePref resources[] = {
 		{ "color0",             STRING,  &normbgcolor },
 		{ "color0",             STRING,  &normbordercolor },
 		{ "color7",             STRING,  &normfgcolor },
-		{ "color7",             STRING,  &selbgcolor },
+		{ "color12",             STRING,  &selbgcolor },
 		{ "color7",             STRING,  &selbordercolor },
 		{ "color0",             STRING,  &selfgcolor },
 		{ "borderpx",          	INTEGER, &borderpx },
