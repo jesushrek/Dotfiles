@@ -8,8 +8,8 @@ static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
 static char *fonts[]          = { 
     "Matangi Semibold:size=11:antialias=true:hinting=true",
+    "Noto Sans Devanagari UI:style=Regular:size=13:antialias=true:hinting=true",
     "Symbols Nerd Font Mono:size=13:style=Regular",
-    "Noto Sans Devanagari UI:style=Regular:size=11:antialias=true:hinting=true",
     "monospace:size=13",
 };
 static char dmenufont[]       = "monospace:size=10";
@@ -86,9 +86,9 @@ ResourcePref resources[] = {
 		{ "color0",             STRING,  &normbgcolor },
 		{ "color0",             STRING,  &normbordercolor },
 		{ "color7",             STRING,  &normfgcolor },
-		{ "color4",             STRING,  &selbgcolor },
+		{ "color7",             STRING,  &selbgcolor },
 		{ "color7",             STRING,  &selbordercolor },
-		{ "color15",             STRING,  &selfgcolor },
+		{ "color0",             STRING,  &selfgcolor },
 		{ "borderpx",          	INTEGER, &borderpx },
 		{ "snap",          		INTEGER, &snap },
 		{ "showbar",          	INTEGER, &showbar },

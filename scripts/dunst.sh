@@ -83,7 +83,7 @@ readonly base_dir="$(realpath "$(dirname "$0")")"
 usage() {
     grep -e '^##[^#]*$' "$base_dir/$script_name"  | \
         sed -e "s/^##[[:space:]]\{0,1\}//g" \
-        -e "s/<script_name>/${script_name}/g"
+            -e "s/<script_name>/${script_name}/g"
     exit 2
 } 2>/dev/null
 
@@ -108,19 +108,19 @@ xrdb_get () {
 declare -A theme_attr_dict=(
     ["global-font"]="$(xrdb_get 'font' 'Monospace') $(xrdb_get '*.font_size:' '11')"
     ["global-frame_width"]="$(xrdb_get 'border_width' '1')"
-    ["global-frame_color"]="\"$(xrdb_get 'foreground' '#65737e')\""
+    ["global-frame_color"]="\"$(xrdb_get 'color8' '#65737e')\""
 
-    ["urgency_low-background"]="\"$(xrdb_get 'color1' '#2b303b')\""
-    ["urgency_low-foreground"]="\"$(xrdb_get 'foreground' '#65737e')\""
-    ["urgency_low-frame_color"]="\"$(xrdb_get 'color10' '#65737e')\""
+    ["urgency_low-background"]="\"$(xrdb_get 'color0' '#2b303b')\""
+    ["urgency_low-foreground"]="\"$(xrdb_get 'color4' '#65737e')\""
+    ["urgency_low-frame_color"]="\"$(xrdb_get 'color4' '#65737e')\""
 
     ["urgency_normal-background"]="\"$(xrdb_get 'color0' '#2b303b')\""
-    ["urgency_normal-foreground"]="\"$(xrdb_get 'foreground' '#a3be8c')\""
-    ["urgency_normal-frame_color"]="\"$(xrdb_get 'color10' '#a3be8c')\""
+    ["urgency_normal-foreground"]="\"$(xrdb_get 'color2' '#a3be8c')\""
+    ["urgency_normal-frame_color"]="\"$(xrdb_get 'color2' '#a3be8c')\""
 
     ["urgency_critical-background"]="\"$(xrdb_get 'color0' '#2b303b')\""
-    ["urgency_critical-foreground"]="\"$(xrdb_get 'foreground' '#bf616a')\""
-    ["urgency_critical-frame_color"]="\"$(xrdb_get 'color10' '#bf616a')\""
+    ["urgency_critical-foreground"]="\"$(xrdb_get 'color1' '#bf616a')\""
+    ["urgency_critical-frame_color"]="\"$(xrdb_get 'color1' '#bf616a')\""
 )
 
 # Attributes dictionary keys.
@@ -150,7 +150,7 @@ fi
 # Check if the user config file exists
 if ! [ -f "$user_conf" ]; then
     printf '"%s" file does not exist.\nChecking for config file example.' \
-        "$user_conf"
+               "$user_conf"
 
     if [ -d "/usr/share/dunst" ]; then
         # Archlinux default dir and example file
@@ -160,8 +160,8 @@ if ! [ -f "$user_conf" ]; then
             example_conf="$example_conf_dir/dunstrc"
         else
             printf 'Could not find the example config file in "%s".
-            \nPlease, change $example_conf variable in the script.' \
-                "$example_conf_dir"
+               \nPlease, change $example_conf variable in the script.' \
+                   "$example_conf_dir"
             exit 1
         fi
 
@@ -177,14 +177,14 @@ if ! [ -f "$user_conf" ]; then
             example_conf="$example_conf_dir/dunstrc.gz"
         else
             printf 'Could not find the example config file in "%s".
-            \nPlease, change $example_conf variable in the script.' \
-                "$example_conf_dir"
+               \nPlease, change $example_conf variable in the script.' \
+                   "$example_conf_dir"
             exit 1
         fi
 
     else
         printf 'Could not find the example config directory.
-        \nPlease, change $example_conf_dir variable in the script.'
+           \nPlease, change $example_conf_dir variable in the script.'
         exit 1
     fi
 
@@ -203,7 +203,7 @@ fi
 # Regular expressions
 readonly re_section_line='^\[(.*)\]$'
 readonly re_empty_comment_line='(^$)|(^[[:space:]]*(\#)|(;))'
-    readonly re_attribute_line='^([[:space:]]*)([_[:alnum:]]+)'
+readonly re_attribute_line='^([[:space:]]*)([_[:alnum:]]+)'
 
 # Create an array with the file lines
 mapfile -t conf < "$user_conf"
@@ -229,15 +229,15 @@ for idx in "${!conf[@]}"; do
     case "$valid_keys" in
         *"$curr_sett_name"*)
             printf -v conf[$idx] '    %s = %s' \
-                "${curr_attr_name}" \
-                "${theme_attr_dict[$curr_sett_name]}"
+                   "${curr_attr_name}" \
+                   "${theme_attr_dict[$curr_sett_name]}"
             ;;
     esac
 done
 
 # Create a header for the xr_color config file
 user_xr_color_conf_content="\
-    ###################################
+###################################
 #
 # Config file created with
 # $script_name wrapper
@@ -252,3 +252,4 @@ user_xr_color_conf_content+="$(printf '%s\n' "${conf[@]}")"
 printf '%s\n' "$user_xr_color_conf_content" > "$user_xr_color_conf"
 
 printf '"%s" updated successfully.\n' "$user_xr_color_conf"
+

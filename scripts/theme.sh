@@ -75,6 +75,7 @@ refresh_resources() {
     if [ -d "$OOMOX_REPO" ]; then
         $OOMOX_REPO/change_color.sh -o my-xres-theme $HOME/.cache/wal/colors-oomox
     fi
+
     local theme_name="$1"
     "$SCRIPTS_DIR/dunst.sh"
     pkill dunst; dunst -conf ~/.config/dunst/dunstrc_xr_colors &
