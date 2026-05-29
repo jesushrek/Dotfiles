@@ -20,7 +20,6 @@ if test -f "$usermodmap" ; then xmodmap "$usermodmap"; fi
 
 # auto lock  
 export MOUSE_DIRECTION=left
-export QT_QPA_PLATFORMTHEME=qt5ct
 xset s 298 2
 
 #keyboard layouts
@@ -40,9 +39,10 @@ dunst -conf ~/.config/dunst/dunstrc_xr_colors &
 
 # bar and lock
 ~/scripts/bar.sh &
-~/scripts/dunst.sh &
+~/scripts/battery_notification.sh &
 xss-lock -n ~/scripts/detect_fullscreen_and_move_mouse.sh -- slock &
 kdeconnectd &
+xsettingsd &
 
 #dwm
 exec dbus-launch --exit-with-session "${twm}" 2> ~/.dwm.log

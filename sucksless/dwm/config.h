@@ -10,6 +10,7 @@ static char *fonts[]          = {
     "Matangi Semibold:size=11:antialias=true:hinting=true",
     "Noto Sans Devanagari UI:style=Regular:size=13:antialias=true:hinting=true",
     "Symbols Nerd Font Mono:size=13:style=Regular",
+    "Noto Color Emoji:style=Regular",
     "monospace:size=13",
 };
 static char dmenufont[]       = "monospace:size=10";
