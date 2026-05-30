@@ -36,13 +36,16 @@ static const Rule rules[] = {
      *	WM_CLASS(STRING) = instance, class
      *	WM_NAME(STRING) = title
      */
-    /* class      instance    title       tags mask     isfloating   monitor */
+    /* class      instance    title       tags mask     isfloating   monitor  isgame */
 
     { "Gimp",     NULL,       NULL,       0,            1,           -1 },
     { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
     { "St",       NULL,       NULL,       1 << 7,       0,           -1 },
+    { "St",       NULL,       NULL,       1 << 7,       0,           -1 },
     { "Steam",    NULL,       NULL,       0,            0,           -1,      1 },
     { "steam_app",NULL,       NULL,       0,            0,           -1,      1 },
+    { "QtCreator",NULL,       NULL,       1 << 6,       0,           -1 },
+    { "Zathura",  NULL,       NULL,       1 << 5,       0,           -1 },
 };
 
 /* layout(s) */
@@ -84,19 +87,19 @@ static const char *mutevol[]    = { "/usr/bin/wpctl",   "set-mute",   "@DEFAULT_
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-		{ "background",         STRING,  &normbgcolor },
-		{ "background",         STRING,  &normbordercolor },
-		{ "foreground",         STRING,  &normfgcolor },
-		{ "foreground",         STRING,  &selbgcolor },
-		{ "foreground",         STRING,  &selbordercolor },
-		{ "background",         STRING,  &selfgcolor },
-		{ "borderpx",          	INTEGER, &borderpx },
-		{ "snap",          		INTEGER, &snap },
-		{ "showbar",          	INTEGER, &showbar },
-		{ "topbar",          	INTEGER, &topbar },
-		{ "nmaster",          	INTEGER, &nmaster },
-		{ "resizehints",       	INTEGER, &resizehints },
-		{ "mfact",      	 	FLOAT,   &mfact },
+    { "background",         STRING,  &normbgcolor },
+    { "background",         STRING,  &normbordercolor },
+    { "foreground",         STRING,  &normfgcolor },
+    { "foreground",         STRING,  &selbgcolor },
+    { "foreground",         STRING,  &selbordercolor },
+    { "background",         STRING,  &selfgcolor },
+    { "borderpx",          	INTEGER, &borderpx },
+    { "snap",          		INTEGER, &snap },
+    { "showbar",          	INTEGER, &showbar },
+    { "topbar",          	INTEGER, &topbar },
+    { "nmaster",          	INTEGER, &nmaster },
+    { "resizehints",       	INTEGER, &resizehints },
+    { "mfact",      	 	FLOAT,   &mfact },
 };
 
 //static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
