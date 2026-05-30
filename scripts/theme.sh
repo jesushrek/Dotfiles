@@ -1,125 +1,100 @@
-#!/bin/bash
+#!/bin/sh
 
-WALLPAPER_DIR="$HOME/wallpapers"
-SCRIPTS_DIR="$HOME/scripts"
-THEME_FILE="$HOME/.config/.current_theme"
-OOMOX_REPO="$HOME/.repo/oomox-gtk-theme"
+_wallpaper_dir="${HOME}/wallpapers"
+_scripts_dir="${HOME}/scripts"
+_oomox_repo="${HOME}/.repo/oomox-gtk-theme"
+_oomox_template="${_oomox_repo}/test/colors/xresources/xresources"
+_config_dir="${HOME}/.config"
+_themes_list="${_config_dir}/.themes.txt"
+_theme_file="${_config_dir}/.current_theme"
 
-# Theme configuration: theme_name|wal_theme|wallpaper|mode
-declare -A THEME_CONFIG=(
-    ["base16-unikitty"]="base16-unikitty|puddle.png|dark"
-    ["base16-black-metal"]="base16-black-metal|goldenEgle.png|dark"
-    ["base16-chalk"]="base16-chalk|Mountains.png|dark"
-    ["base16-grayscale"]="base16-grayscale|Ahaetulla-prasina-white-morph.png|dark"
-    ["base16-circus"]="base16-circus|Rocket_warfare.png|dark"
-    ["sexy-tangoesque"]="sexy-tangoesque|oldMan.png|dark"
-    ["base16-atelier-seaside"]="base16-atelier-seaside|tree.png|dark"
-    ["base16-solarflare"]="base16-solarflare|Giant.png|dark"
-    ["solarized"]="solarized|solarizedCar.png|dark"
-    ["solarized-light"]="solarized|kiwi.png|light"
-    ["dracula"]="base16-dracula|dracula-leaves-6272a4-dark.png|dark"
-    ["nord"]="base16-nord|nordGirl.png|dark"
-    ["sexy-kasugano"]="sexy-kasugano|whale.png|dark"
-    ["sexy-muse"]="sexy-muse|shrek.png|dark"
-    ["base16-atelier-dune"]="base16-atelier-dune|Ahaetulla-prasina.png|dark"
-    ["black-metal-khold"]="base16-black-metal-khold|WeepingAngel.png|dark"
-    ["base16-twilight"]="base16-twilight|flowers.png|dark"
-    ["gruvbox-hard-dark"]="base16-gruvbox-hard|brothers.png|dark"
-    ["base16-Harmonic"]="base16-harmonic|tortle.png|dark"
-    ["gruvbox-soft-light"]="base16-gruvbox-soft|kiwi.png|light"
-    ["dkeg-vans"]="dkeg-vans|stars.png|dark"
-    ["dkeg-stv"]="dkeg-stv|Spritied_away.png|dark"
-    ["base16-mocha"]="base16-mocha|parents.png|dark"
-    ["base16-ocean"]="base16-ocean|flowers.png|dark"
-)
-
-get_theme_selection() {
-    printf "%s\n" "${!THEME_CONFIG[@]}" | sort | dmenu -l 100 -i -p "Select Theme:"
+err_msg() { 
+    notify-send "त्रुटि" "$1"
 }
 
-apply_theme() {
-    local theme_name="$1"
-    local config="${THEME_CONFIG[$theme_name]}"
+succ_msg() { 
+    notify-send "सफलता" "$1"
+}
 
-    if [ -z "$config" ]; then
-        notify-send "Error" "Unknown theme: $theme_name"
+set_wallpaper() { 
+    if test -f "${_wallpaper_dir}/$1"; then
+        printf "xwallpaper --stretch %s/%s" "${_wallpaper_dir}" "$1" > "${_config_dir}/.wallpaper.sh"
+        chmod +x "${_config_dir}/.wallpaper.sh"; "${_config_dir}/.wallpaper.sh"
+    else
+        err_msg "तस्बिर फेला परेन"
+        return 1
+    fi
+}
+
+set_theme() { 
+    __config="$1"
+
+    if test -z "${__config}"; then
+        err_msg "रूपरेख फेला परेन"
         return 1
     fi
 
-    IFS='|' read -r wal_theme wallpaper mode <<< "$config"
+    # populating all the variables
+    IFS=':' read -r __name __theme __wallpaper __mode << EOF
+${__config}
+EOF
 
-    # Apply wal theme
-    if [ "$mode" = "light" ]; then
-        wal --theme "$wal_theme" -l
-    else
-        wal --theme "$wal_theme"
-    fi
+if test "${__mode}" = "light"; then
+    wal --theme ${__theme} -l
+else
+    wal --theme ${__theme}
+fi
 
-    # Set wallpaper
-    echo "xwallpaper --stretch "$WALLPAPER_DIR/$wallpaper"" > ~/.config/.wallpaper.sh 
-    chmod +x ~/.config/.wallpaper.sh && ~/.config/.wallpaper.sh
+# Todo: Write lightxDark.sh 
+if test -f "${_scripts_dir}/lightxDark.sh"; then
+    lightxDark.sh "${__mode}"
+fi
 
-    # Set light/dark mode if exists
-    if [ -f "$SCRIPTS_DIR/lightxDark.sh" ]; then
-        "$SCRIPTS_DIR/lightxDark.sh" "$mode"
-    fi
-
-    # Save current theme
-    echo "$theme_name" > "$THEME_FILE"
+set_wallpaper "$__wallpaper";
+echo "${__theme}" > "${_theme_file}"
 }
 
-refresh_resources() {
-    # Reload dwm
-    xdotool key Super+F5
-    # Set OOMOX Theme if the directory exists
-    if [ -d "$OOMOX_REPO" ]; then
-        #$OOMOX_REPO/change_color.sh -o my-xres-theme $HOME/.cache/wal/colors-oomox
-        $OOMOX_REPO/change_color.sh -o my-xres-theme $OOMOX_REPO/test/colors/xresources/xresources3
+refresh_resources() { 
+    xdotool key Super+F5;
+    if test -f "${_scripts_dir}/dunst.sh"; then
+        "${_scripts_dir}/dunst.sh"; 
+        pkill dunst; 
+        dunst -conf ~/.config/dunst/dunstrc_xr_colors &
+    fi
 
-        #Refresh the gtk apps : )
-        pkill xsettingsd
+    succ_msg "रूपरेखा लागू गरियो।"
+
+    # set OOMOX theme if the repo exists
+    if test -d "${_oomox_repo}"; then
+        "${_oomox_repo}/change_color.sh" -o my-xres-theme "${_oomox_template}"
+        pkill xsettingsd;
         sleep 0.1
-        xsettingsd & 
+        xsettingsd > /dev/null 2>&1 & 
+    fi
+}
+
+main() { 
+    input="$1"
+
+    if ! test -f "${_themes_list}"; then
+        err_msg "फेला परेन"
+        return 1
     fi
 
-    local theme_name="$1"
-    "$SCRIPTS_DIR/dunst.sh"
-    pkill dunst; dunst -conf ~/.config/dunst/dunstrc_xr_colors &
-    notify-send "Applied" "$theme_name"
-}
+    _selected_theme=""
 
-apply_random_theme() {
-    local themes=("${!THEME_CONFIG[@]}")
-    local random_theme="${themes[$RANDOM % ${#themes[@]}]}"
-        apply_theme "$random_theme" && refresh_resources "$random_theme (Random)"
-}
-
-main() {
-    local input="$1"
-
-    case "$input" in
-        --random)
-            apply_random_theme
-            ;;
-        "")
-            local selected_theme
-            selected_theme=$(get_theme_selection)
-
-            if [ -n "$selected_theme" ]; then
-                apply_theme "$selected_theme" && refresh_resources "$selected_theme"
-            else
-                notify-send "No Theme Selected"
-            fi
-            ;;
-        *)
-            if [ -n "${THEME_CONFIG[$input]}" ]; then
-                apply_theme "$input" && refresh_resources "$input"
-            else
-                notify-send "Error" "Unknown theme: $input"
-                exit 1
-            fi
-            ;;
+    case "${input}" in
+        "") _selected_theme="$(dmenu -l 100 -p "Select theme:" < ${_themes_list})" ;;
+        --random) _selected_theme="$(shuf -n 1 ${_themes_list})" ;;
+        *) _selected_theme="$(grep -m1 ${input} ${_themes_list})" ;;
     esac
+
+    if test -z "${_selected_theme}"; then
+        err_msg "तपाईंले रूपरेखा छान्नुभएन।"
+        return 1;
+    fi
+
+    set_theme "${_selected_theme}" && refresh_resources
 }
 
-main "$1"
+main "$@"
