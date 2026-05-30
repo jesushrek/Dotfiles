@@ -73,7 +73,8 @@ refresh_resources() {
     xdotool key Super+F5
     # Set OOMOX Theme if the directory exists
     if [ -d "$OOMOX_REPO" ]; then
-        $OOMOX_REPO/change_color.sh -o my-xres-theme $HOME/.cache/wal/colors-oomox
+        #$OOMOX_REPO/change_color.sh -o my-xres-theme $HOME/.cache/wal/colors-oomox
+        $OOMOX_REPO/change_color.sh -o my-xres-theme $OOMOX_REPO/test/colors/xresources/xresources3
 
         #Refresh the gtk apps : )
         pkill xsettingsd
