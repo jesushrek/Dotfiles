@@ -148,6 +148,7 @@ static const Key keys[] = {
     { 0,                            XF86XK_AudioMute, spawn,        {.v = mutevol } },
     { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
     { 0,                            XK_Print,  spawn,          {.v = guiShot } },
+    { 0,                            XF86XK_Launch2,   spawn,                  {.v = playFart } },
     { MODKEY,                       XK_Print,  spawn,          {.v = fullShot } },
     { 0,							XF86XK_MonBrightnessUp,		spawn,	{.v = light_up} },
     { MODKEY,                       XK_semicolon,               spawn,  {.v = browser } },
