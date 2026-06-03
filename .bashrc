@@ -3,6 +3,7 @@
 # ~/.bashrc
 #
 # If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 #environmental variables 
 
 vimfzf() {
@@ -14,7 +15,6 @@ export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 set -o vi
 #don't know 
-[[ $- != *i* ]] && return
 
 #aliases 
 alias ls='ls --color=auto'

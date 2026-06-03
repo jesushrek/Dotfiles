@@ -113,7 +113,6 @@ _df="/usr/bin/git --git-dir=${_home}/.dotfiles/ --work-tree=${_home}"
         (cd "${_home}/wallpapers" && git lfs pull)
     fi
 
-    . ${_home}/.bashrc
     ${_home}/scripts/theme.sh "$(cat ~/.config/.current_theme)"
     fi
 EOF

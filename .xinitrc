@@ -8,15 +8,15 @@ xterm="st"
 twm="dwm"
 xmodmap="xmodmap"
 
-userresources="$HOME/.Xresources"
-usermodmap="$HOME/.Xmodmap"
-sysresources="$xinitdir/.Xresources"
-sysmodmap="$xinitdir/.Xmodmap"
+userresources="${HOME}/.Xresources"
+usermodmap="${HOME}/.Xmodmap"
+sysresources="${xinitdir}/.Xresources"
+sysmodmap="${xinitdir}/.Xmodmap"
 
-if test -f "$sysresources" ; then xrdb -merge "$sysresources"; fi
-if test -f "$sysmodmap" ; then xmodmap "$sysmodmap"; fi
-if test -f "$userresources" ; then xrdb -merge "$userresources"; fi
-if test -f "$usermodmap" ; then xmodmap "$usermodmap"; fi
+if test -f "${sysresources}" ; then xrdb -merge "${sysresources}"; fi
+if test -f "${sysmodmap}" ; then xmodmap "${sysmodmap}"; fi
+if test -f "${userresources}" ; then xrdb -merge "${userresources}"; fi
+if test -f "${usermodmap}" ; then xmodmap "${usermodmap}"; fi
 
 # auto lock  
 export MOUSE_DIRECTION=left
