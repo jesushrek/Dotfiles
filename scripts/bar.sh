@@ -11,6 +11,6 @@ while true; do
     _text="$(echo "[  "${_date}" ∣  "${_current_date}" ∣  "${_battery}"% ]" | _devnagari)"
 
     xsetroot -name "${_text}"
-#    ~/scripts/sleepReminder.sh
+    #    ~/scripts/sleepReminder.sh
     sleep 1m
 done

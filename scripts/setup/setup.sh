@@ -143,7 +143,7 @@ install_suckless() {
 
     for _prog in "${_home}/sucksless"/*; do
         _software="$(basename "${_prog}")"
-        if [ "${_software}" = "slock" ]; then
+        if test "${_software}" = "slock"; then
             (cd "${_prog}" && make clean &&  make install clean)
         else
             (cd "${_prog}" && make clean &&  make PREFIX="${_home}/.local" install clean)

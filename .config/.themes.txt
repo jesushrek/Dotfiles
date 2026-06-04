@@ -22,3 +22,5 @@ dkeg-vans:dkeg-vans:stars.png:dark
 dkeg-stv:dkeg-stv:Spritied_away.png:dark
 base16-mocha:base16-mocha:parents.png:dark
 base16-ocean:base16-ocean:flowers.png:dark
+3024-day:3024:house-mountain-white.png:light
+3024-night:3024:misty_mountains.png:dark

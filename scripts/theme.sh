@@ -3,10 +3,12 @@
 _wallpaper_dir="${HOME}/wallpapers"
 _scripts_dir="${HOME}/scripts"
 _oomox_repo="${HOME}/.repo/oomox-gtk-theme"
-_oomox_template="${_oomox_repo}/test/colors/xresources/xresources3"
+_vim_theme_generator="${HOME}/.repo/vimpersonalizer/vimpersonalize.sh"
+_oomox_template="${_oomox_repo}/test/colors/xresources/xresources"
 _config_dir="${HOME}/.config"
 _themes_list="${_config_dir}/.themes.txt"
 _theme_file="${_config_dir}/.current_theme"
+_vim_mode="${HOME}/.vim.mode"
 
 err_msg() { 
     notify-send "त्रुटि" "$1"
@@ -52,6 +54,7 @@ fi
 
 set_wallpaper "$__wallpaper";
 echo "${__theme}" > "${_theme_file}"
+echo "set background=${__mode}" > "${_vim_mode}"
 }
 
 refresh_resources() { 
@@ -70,7 +73,11 @@ refresh_resources() {
         pkill xsettingsd;
         sleep 0.1
         xsettingsd > /dev/null 2>&1 & 
-    fi
+fi
+
+if test -f "${_vim_theme_generator}"; then
+    "${_vim_theme_generator}" -a -i 
+fi
 }
 
 main() { 
