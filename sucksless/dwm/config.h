@@ -45,7 +45,6 @@ static const Rule rules[] = {
     { "Steam",    NULL,       NULL,       0,            0,           -1,      1 },
     { "steam_app",NULL,       NULL,       0,            0,           -1,      1 },
     { "QtCreator",NULL,       NULL,       1 << 6,       0,           -1 },
-    { "Zathura",  NULL,       NULL,       1 << 5,       0,           -1 },
 };
 
 /* layout(s) */

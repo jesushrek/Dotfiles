@@ -14,7 +14,7 @@ if [ -n "$SELECTED" ]; then
     case "$GPU" in
         "nvidia")
             notify-send "nvidia" "detected opinion rejected"
-            st -e mpv -v --hwdec=nvdec --vo=gpu "$VIDEO_DIR/$SELECTED"
+            st -e mpv -v --hwdec=nvdec --vo=gpu-next --gpu-api=vulkan "$VIDEO_DIR/$SELECTED"
             ;;
         "igpu")
             notify-send "intel" "detected opinion accepted"
