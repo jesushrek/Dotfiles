@@ -10,6 +10,8 @@ _themes_list="${_config_dir}/.themes.txt"
 _theme_file="${_config_dir}/.current_theme"
 _vim_mode="${HOME}/.vim.mode"
 
+set -e
+
 err_msg() { 
     notify-send "त्रुटि" "$1"
 }
@@ -49,16 +51,16 @@ fi
 
 # Todo: Write lightxDark.sh 
 if test -f "${_scripts_dir}/lightxDark.sh"; then
-    "${_scripts_dir}/lightxDark.sh" "${__mode}"
+    "${_scripts_dir}/lightxDark.sh" "${__mode}" & 
 fi
 
-set_wallpaper "$__wallpaper";
+set_wallpaper "$__wallpaper" & 
 echo "${__theme}" > "${_theme_file}"
 echo "set background=${__mode}" > "${_vim_mode}"
 }
 
 refresh_resources() { 
-    xdotool key Super+F5;
+    xdotool key Super+F5 & 
     if test -f "${_scripts_dir}/dunst.sh"; then
         "${_scripts_dir}/dunst.sh"; 
         pkill dunst; 
@@ -73,11 +75,11 @@ refresh_resources() {
         pkill xsettingsd;
         sleep 0.1
         xsettingsd > /dev/null 2>&1 & 
-fi
+    fi
 
-if test -f "${_vim_theme_generator}"; then
-    "${_vim_theme_generator}" -a -i 
-fi
+    if test -f "${_vim_theme_generator}"; then
+        "${_vim_theme_generator}" -a -i 
+    fi
 }
 
 main() { 
