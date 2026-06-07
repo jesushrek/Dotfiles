@@ -15,6 +15,7 @@ sexy-muse:sexy-muse:shrek.png:dark
 base16-atelier-dune:base16-atelier-dune:Ahaetulla-prasina.png:dark
 black-metal-khold:base16-black-metal-khold:WeepingAngel.png:dark
 base16-twilight:base16-twilight:flowers.png:dark
+gruvbox:gruvbox:yosemite_valley.png:dark
 gruvbox-hard-dark:base16-gruvbox-hard:brothers.png:dark
 base16-Harmonic:base16-harmonic:tortle.png:dark
 gruvbox-soft-light:base16-gruvbox-soft:kiwi.png:light
