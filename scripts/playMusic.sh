@@ -6,7 +6,7 @@ SELECTED=$(find "$MUSIC_DIR" -type f \
     | sed "s|$MUSIC_DIR/||" \
     | dmenu -i -l 15 -p "Select music:")
 
-if [ -n "$SELECTED" ]; then
+if test -n "$SELECTED"; then
     mpv --force-window "$MUSIC_DIR/$SELECTED"
 else
     notify-send "No music selected"

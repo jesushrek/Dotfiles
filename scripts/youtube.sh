@@ -5,7 +5,7 @@ CACHE_FILE="/tmp/yt_search_results.txt"
 HISTORY_FILE="$HOME/.config/history.txt"
 DELIM="TABSEP"
 
-query=$(echo "" | dmenu -p "Search YouTube:")
+query=$(dmenu -p "Search YouTube:")
 [[ -z "$query" ]] && exit 1
 
 notify-send "YouTube" "Fetching results for: $query..."
