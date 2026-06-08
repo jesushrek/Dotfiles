@@ -95,8 +95,7 @@ main() {
     case "${input}" in
         "") _selected_theme="$(dmenu -l 100 -p "Select theme:" < ${_themes_list})" ;;
         --random) 
-            succ_msg "गोलाप्रथाद्वारा रूपरेखा छनोट गरियो"
-            _selected_theme="$(shuf -n 1 ${_themes_list})" 
+            succ_msg "गोलाप्रथाद्वारा रूपरेखा छनोट गरियो" _selected_theme="$(shuf -n 1 ${_themes_list})" 
             ;;
         *) _selected_theme="$(grep -m1 ${input} ${_themes_list})" ;;
     esac
