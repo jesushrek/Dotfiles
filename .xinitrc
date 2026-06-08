@@ -1,17 +1,19 @@
 #!/bin/sh
 
-prefix="/usr"
-exec_prefix="${prefix}"
-xinitdir="/etc/X11/xinit"
-xclock="xclock"
-xterm="st"
-twm="dwm"
-xmodmap="xmodmap"
+# Paths and 
+export prefix="/usr"
+export exec_prefix="${prefix}"
+export xinitdir="/etc/X11/xinit"
+export xclock="xclock"
+export xterm="st"
+export twm="dwm"
+export xmodmap="xmodmap"
 
-userresources="${HOME}/.Xresources"
-usermodmap="${HOME}/.Xmodmap"
-sysresources="${xinitdir}/.Xresources"
-sysmodmap="${xinitdir}/.Xmodmap"
+export userresources="${HOME}/.Xresources"
+export usermodmap="${HOME}/.Xmodmap"
+export sysresources="${xinitdir}/.Xresources"
+export sysmodmap="${xinitdir}/.Xmodmap"
+export MOUSE_DIRECTION=left
 
 if test -f "${sysresources}" ; then xrdb -merge "${sysresources}"; fi
 if test -f "${sysmodmap}" ; then xmodmap "${sysmodmap}"; fi
@@ -19,7 +21,6 @@ if test -f "${userresources}" ; then xrdb -merge "${userresources}"; fi
 if test -f "${usermodmap}" ; then xmodmap "${usermodmap}"; fi
 
 # auto lock  
-export MOUSE_DIRECTION=left
 xset s 298 2
 
 #keyboard layouts
