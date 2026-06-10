@@ -4,7 +4,8 @@ _wallpaper_dir="${HOME}/wallpapers"
 _scripts_dir="${HOME}/scripts"
 _oomox_repo="${HOME}/.repo/oomox-gtk-theme"
 _vim_theme_generator="${HOME}/.repo/vimpersonalizer/vimpersonalize.sh"
-_oomox_template="${_oomox_repo}/test/colors/xresources/xresources3"
+#_oomox_template="${_oomox_repo}/test/colors/xresources/xresources3"
+_oomox_template="${HOME}/.cache/wal/colors-oomox"
 _config_dir="${HOME}/.config"
 _themes_list="${_config_dir}/.themes.txt"
 _theme_file="${_config_dir}/.current_theme"
@@ -62,9 +63,8 @@ echo "set background=${__mode}" > "${_vim_mode}"
 refresh_resources() { 
     xdotool key Super+F5 & 
     if test -f "${_scripts_dir}/dunst.sh"; then
-        "${_scripts_dir}/dunst.sh"; 
-        pkill dunst; 
-        dunst -conf ~/.config/dunst/dunstrc_xr_colors &
+        ${HOME}/scripts/dunst.sh
+        dunstctl reload
     fi
 
     succ_msg "रूपरेखा लागू गरियो।"
@@ -93,7 +93,7 @@ main() {
     _selected_theme=""
 
     case "${input}" in
-        "") _selected_theme="$(dmenu -l 100 -p "Select theme:" < ${_themes_list})" ;;
+        "") _selected_theme="$(dmenu -i -l 100 -p "Select theme:" < ${_themes_list})" ;;
         --random) 
             succ_msg "गोलाप्रथाद्वारा रूपरेखा छनोट गरियो" _selected_theme="$(shuf -n 1 ${_themes_list})" 
             ;;

@@ -10,6 +10,7 @@ filetype plugin on
 filetype plugin indent on
 syntax on
 
+set t_Co=16
 colorscheme wal
 
 set hlsearch
