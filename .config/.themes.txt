@@ -2,7 +2,7 @@
 3024-night:3024:misty_mountains.png:dark
 base16-Harmonic:base16-harmonic:tortle.png:dark
 base16-atelier-dune:base16-atelier-dune:Ahaetulla-prasina.png:dark
-base16-atelier-heath-light:solarized:peach_flowers.png
+base16-atelier-heath-light:base16-atelier-heath:peach_flowers.png:light
 base16-atelier-savanna:base16-atelier-savanna:Yellow-flower.png:dark
 base16-atelier-seaside:base16-atelier-seaside:tree.png:dark
 base16-black-metal:base16-black-metal:goldenEgle.png:dark
