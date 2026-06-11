@@ -28,9 +28,7 @@ setlocal tabstop=4 shiftwidth=4 expandtab
 let mapleader = ' '
 nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 
-autocmd FileType tex nnoremap <buffer> <F5> :w<CR>:!pdflatex %<CR>
-autocmd FileType c nnoremap <buffer> <F5> :w<CR>:!gcc -o %< % -Werror -Wall && ./%<<CR>
-autocmd FileType cpp nnoremap <buffer> <F5> :w<CR>:!g++ -o %< % -Werror -Wall && ./%<<CR>
+autocmd FileType tex autocmd BufWritePost <buffer> silent! !pdflatex % > /dev/null 2>&1 &
 
 " Set Background
 if filereadable(expand('~/.vim.mode'))

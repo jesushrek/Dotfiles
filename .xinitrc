@@ -8,6 +8,7 @@ export xclock="xclock"
 export xterm="st"
 export twm="dwm"
 export xmodmap="xmodmap"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 export userresources="${HOME}/.Xresources"
 export usermodmap="${HOME}/.Xmodmap"
