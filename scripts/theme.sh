@@ -23,7 +23,7 @@ succ_msg() {
 
 set_wallpaper() { 
     if test -f "${_wallpaper_dir}/$1"; then
-        printf "xwallpaper --stretch %s/%s" "${_wallpaper_dir}" "$1" > "${_config_dir}/.wallpaper.sh"
+        printf "xwallpaper --focus %s/%s" "${_wallpaper_dir}" "$1" > "${_config_dir}/.wallpaper.sh"
         chmod +x "${_config_dir}/.wallpaper.sh"; "${_config_dir}/.wallpaper.sh"
     else
         err_msg "तस्बिर फेला परेन"
@@ -95,7 +95,7 @@ main() {
     case "${input}" in
         "") _selected_theme="$(dmenu -i -l 100 -p "Select theme:" < ${_themes_list})" ;;
         --random) 
-            succ_msg "गोलाप्रथाद्वारा रूपरेखा छनोट गरियो" _selected_theme="$(shuf -n 1 ${_themes_list})" 
+            succ_msg "गोलाप्रथाद्वारा रूपरेखा छनोट गरियो" && _selected_theme="$(shuf -n 1 ${_themes_list})" 
             ;;
         *) _selected_theme="$(grep -m1 ${input} ${_themes_list})" ;;
     esac

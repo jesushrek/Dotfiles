@@ -15,6 +15,7 @@ base16-solarflare:base16-solarflare:Giant.png:dark
 base16-twilight:base16-twilight:flowers.png:dark
 base16-unikitty:base16-unikitty:puddle.png:dark
 black-metal-khold:base16-black-metal-khold:WeepingAngel.png:dark
+dkeg-shade:dkeg-shade:metro-2033.png:dark
 dkeg-stv:dkeg-stv:Spritied_away.png:dark
 dkeg-vans:dkeg-vans:stars.png:dark
 dracula:base16-dracula:dracula-leaves-6272a4-dark.png:dark
