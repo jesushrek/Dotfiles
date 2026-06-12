@@ -81,8 +81,8 @@ refresh_resources() {
         "${_vim_theme_generator}" -a -i 
     fi
 
-    if test -f "/tmp/output.jpg"; then
-        rm "/tmp/wallpaper.jpg"
+    if test -f "/tmp/grayscale"; then
+        rm "/tmp/grayscale"
     fi
 }
 
