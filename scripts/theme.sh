@@ -56,7 +56,7 @@ if test -f "${_scripts_dir}/lightxDark.sh"; then
 fi
 
 set_wallpaper "$__wallpaper" & 
-echo "${__theme}" > "${_theme_file}"
+echo "${__config}" > "${_theme_file}"
 echo "set background=${__mode}" > "${_vim_mode}"
 }
 
