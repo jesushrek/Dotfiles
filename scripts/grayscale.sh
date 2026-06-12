@@ -7,7 +7,7 @@ test -f "${_shader}" || exit 0;
 
 if ! test -f "${_temp}"; then
     pkill picom; sleep 0.1
-    picom --backend glx --window-shader-fg "${_shader}"
+    picom --backend glx --window-shader-fg "${_shader}" & 
     touch "${_temp}"
 else
     pkill picom; sleep 0.1
