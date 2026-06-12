@@ -16,10 +16,11 @@ export sysresources="${xinitdir}/.Xresources"
 export sysmodmap="${xinitdir}/.Xmodmap"
 export MOUSE_DIRECTION=left
 
-if test -f "${sysresources}" ; then xrdb -merge "${sysresources}"; fi
-if test -f "${sysmodmap}" ; then xmodmap "${sysmodmap}"; fi
-if test -f "${userresources}" ; then xrdb -merge "${userresources}"; fi
-if test -f "${usermodmap}" ; then xmodmap "${usermodmap}"; fi
+# merge Resources
+test -f "${sysresources}" && xrdb -merge "${sysresources}"
+test -f "${sysmodmap}" && xmodmap "${sysmodmap}"
+test -f "${userresources}" && xrdb -merge "${userresources}"
+test -f "${usermodmap}" && xmodmap "${usermodmap}"
 
 # auto lock  
 xset s 298 2
