@@ -80,6 +80,10 @@ refresh_resources() {
     if test -f "${_vim_theme_generator}"; then
         "${_vim_theme_generator}" -a -i 
     fi
+
+    if test -f "/tmp/output.jpg"; then
+        rm "/tmp/wallpaper.jpg"
+    fi
 }
 
 main() { 
