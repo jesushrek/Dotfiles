@@ -140,11 +140,10 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_space,      togglefloating,         {0} },
     { MODKEY,                       XK_0,          view,                   {.ui = ~0 } },
     { MODKEY|ShiftMask,             XK_0,          tag,                    {.ui = ~0 } },
-    /*	{ MODKEY,                       XK_comma,      focusmon,               {.i = -1 } },
-     *  { MODKEY,                       XK_period,     focusmon,               {.i = +1 } },
-     *  { MODKEY|ShiftMask,             XK_comma,      tagmon,                 {.i = -1 } },
-     *  { MODKEY|ShiftMask,             XK_period,     tagmon,                 {.i = +1 } },
-     */
+  	{ MODKEY,                       XK_1,          focusmon,               {.i = -1 } },
+    { MODKEY,                       XK_2,          focusmon,               {.i = +1 } },
+    { MODKEY|ShiftMask,             XK_1,          tagmon,                 {.i = -1 } },
+    { MODKEY|ShiftMask,             XK_2,          tagmon,                 {.i = +1 } },
     { 0,                 XF86XK_AudioPlay,        spawn,          {.v = medplaycmd } },
     { 0,                 XF86XK_AudioNext,        spawn,          {.v = mednextcmd } },
     { 0,                 XF86XK_AudioPrev,        spawn,          {.v = medprevcmd } },
@@ -162,7 +161,7 @@ static const Key keys[] = {
     { MODKEY,                       XK_v,      spawn,          {.v = clipMenu } },
     { MODKEY|ShiftMask,                       XK_l,      spawn,   {.v = slock} },
 
-    TAGKEYS(                        XK_n,                                  0)
+        TAGKEYS(                        XK_n,                                  0)
         TAGKEYS(                        XK_m,                                  1)
         TAGKEYS(                        XK_comma,                              2)
         TAGKEYS(                        XK_period,                             3)

@@ -36,6 +36,7 @@ picom &
 
 # essentials
 pipewire &
+playerctld & 
 clipmenud &
 qbittorrent-nox &
 dunst -conf ~/.config/dunst/dunstrc_xr_colors &
