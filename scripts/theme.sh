@@ -1,67 +1,71 @@
 #!/bin/sh
 set -e
 
-CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
-WALLPAPER_DIR="$HOME/wallpapers"
-SCRIPTS_DIR="$HOME/scripts"
-THEMES_LIST="$CONFIG_DIR/.themes.txt"
+_config_dir="${HOME}/.config"
+_wallpaper_dir="${HOME}/wallpapers"
+_scripts_dir="${HOME}/scripts"
+_themes_list="${_config_dir}/.themes.txt"
 
-OOMOX_REPO="$HOME/.repo/oomox-gtk-theme"
-OOMOX_TEMPLATE="$HOME/.cache/wal/colors-oomox"
-VIM_GEN="$HOME/.repo/vimpersonalizer/vimpersonalize.sh"
+_oomox_repo="${HOME}/.repo/oomox-gtk-theme"
+_oomox_template="${HOME}/.cache/wal/colors-oomox"
+_vim_theme_generator="${HOME}/.repo/vimpersonalizer/vimpersonalize.sh"
 
-notify() { notify-send "$1" "$2"; }
-err()    { notify "त्रुटि" "$1"; return 1; }
+notify() { notify-send "${1}" "${2}"; }
+err()    { notify "त्रुटि" "${1}"; return 1; }
 
 set_wallpaper() {
-    test -f "$WALLPAPER_DIR/$1" || err "तस्बिर फेला परेन"
-
-    WP_SCRIPT="$CONFIG_DIR/.wallpaper.sh"
-    printf "xwallpaper --focus '%s/%s'\n" "$WALLPAPER_DIR" "$1" > "$WP_SCRIPT"
-    chmod +x "$WP_SCRIPT" && "$WP_SCRIPT" &
+    test -f "${_wallpaper_dir}/${1}" || err "तस्बिर फेला परेन"
+    
+    _wp_script="${_config_dir}/.wallpaper.sh"
+    printf "xwallpaper --focus '%s/%s'\n" "${_wallpaper_dir}" "${1}" > "${_wp_script}"
+    chmod +x "${_wp_script}" && "${_wp_script}" &
 }
 
 set_theme() {
-    test -n "$1" || err "रूपरेख फेला परेन"
+    test -n "${1}" || err "रूपरेख फेला परेन"
 
-    IFS=':' read -r name theme wallpaper mode <<EOF
-$1
+    IFS=':' read -r _name _theme _wallpaper _mode <<EOF
+${1}
 EOF
 
-test "$mode" = "light" && wal --theme "$theme" -l || wal --theme "$theme"
+    if test "${_mode}" = "light"; then
+        wal --theme "${_theme}" -l
+    else
+        wal --theme "${_theme}"
+    fi
 
-test -f "$SCRIPTS_DIR/lightxDark.sh" && "$SCRIPTS_DIR/lightxDark.sh" "$mode" &
-set_wallpaper "$wallpaper"
+    test -f "${_scripts_dir}/lightxDark.sh" && "${_scripts_dir}/lightxDark.sh" "${_mode}" &
+    set_wallpaper "${_wallpaper}"
 
-echo "$1" > "$CONFIG_DIR/.current_theme"
-echo "set background=$mode" > "$HOME/.vim.mode"
+    echo "${1}" > "${_config_dir}/.current_theme"
+    echo "set background=${_mode}" > "${HOME}/.vim.mode"
 }
 
 refresh_resources() {
     xdotool key Super+F5 &
     rm -f /tmp/grayscale
 
-    test -f "$SCRIPTS_DIR/dunst.sh" && "$SCRIPTS_DIR/dunst.sh"
+    test -f "${_scripts_dir}/dunst.sh" && "${_scripts_dir}/dunst.sh"
     dunstctl reload || true
 
-    if test -d "$OOMOX_REPO"; then
-        "$OOMOX_REPO/change_color.sh" -o my-xres-theme "$OOMOX_TEMPLATE"
+    if test -d "${_oomox_repo}"; then
+        "${_oomox_repo}/change_color.sh" -o my-xres-theme "${_oomox_template}"
         pkill xsettingsd || true
         (sleep 0.1; xsettingsd >/dev/null 2>&1) &
     fi
 
-    test -f "$VIM_GEN" && "$VIM_GEN" -a -i &
+    test -f "${_vim_theme_generator}" && "${_vim_theme_generator}" -a -i &
     notify "सफलता" "रूपरेखा लागू गरियो।"
 }
 
-test -f "$THEMES_LIST" || err "फेला परेन"
+test -f "${_themes_list}" || err "फेला परेन"
 
-case "$1" in
-    "")        selected=$(dmenu -i -l 100 -p "Select theme:" < "$THEMES_LIST") ;;
-    --random)  selected=$(shuf -n 1 "$THEMES_LIST") && notify "सफलता" "गोलाप्रथाद्वारा रूपरेखा छनोट गरियो" ;;
-    *)         selected=$(grep -m1 "$1" "$THEMES_LIST") ;;
+case "${1}" in
+    "")        _selected="$(dmenu -i -l 100 -p "Select theme:" < "${_themes_list}")" ;;
+    --random)  _selected="$(shuf -n 1 "${_themes_list}")" && notify "सफलता" "गोलाप्रथाद्वारा रूपरेखा छनोट गरियो" ;;
+    *)         _selected="$(grep -m1 "${1}" "${_themes_list}")" ;;
 esac
 
-test -n "$selected" || err "तपाईंले रूपरेखा छान्नुभएन।"
+test -n "${_selected}" || err "तपाईंले रूपरेखा छान्नुभएन।"
 
-set_theme "$selected" && refresh_resources
+set_theme "${_selected}" && refresh_resources
