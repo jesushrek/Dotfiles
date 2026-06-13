@@ -113,6 +113,10 @@ static const char *slock[] = {"slock", NULL};
 static const char *guiShot[] = { "flameshot", "gui",NULL };
 static const char *fullShot[] = { "flameshot", "full", "-c", "-p", "/home/voyager-1/Pictures/Screenshots",NULL };
 
+static const char *medplaycmd[] = { "playerctl", "play-pause", NULL };
+static const char *mednextcmd[] = { "playerctl", "next", NULL };
+static const char *medprevcmd[] = { "playerctl", "previous", NULL };
+
 static const Key keys[] = {
     /* modifier                     key            function                argument */
     { MODKEY,                       XK_d,          spawn,                  {.v = dmenucmd } },
@@ -141,6 +145,9 @@ static const Key keys[] = {
      *  { MODKEY|ShiftMask,             XK_comma,      tagmon,                 {.i = -1 } },
      *  { MODKEY|ShiftMask,             XK_period,     tagmon,                 {.i = +1 } },
      */
+    { 0,                 XF86XK_AudioPlay,        spawn,          {.v = medplaycmd } },
+    { 0,                 XF86XK_AudioNext,        spawn,          {.v = mednextcmd } },
+    { 0,                 XF86XK_AudioPrev,        spawn,          {.v = medprevcmd } },
     { ControlMask|ShiftMask,        XK_period,  spawn,          {.v = dmenuEmotes } },
     { ControlMask|ShiftMask,        XK_space,   spawn,          {.v = dmenuWeb } },
     { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol } },

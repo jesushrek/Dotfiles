@@ -15,9 +15,9 @@ err()    { notify "त्रुटि" "${1}"; return 1; }
 
 set_wallpaper() {
     test -f "${_wallpaper_dir}/${1}" || err "तस्बिर फेला परेन"
-    
+
     _wp_script="${_config_dir}/.wallpaper.sh"
-    printf "xwallpaper --focus '%s/%s'\n" "${_wallpaper_dir}" "${1}" > "${_wp_script}"
+    printf "xwallpaper --stretch '%s/%s'\n" "${_wallpaper_dir}" "${1}" > "${_wp_script}"
     chmod +x "${_wp_script}" && "${_wp_script}" &
 }
 
@@ -28,17 +28,17 @@ set_theme() {
 ${1}
 EOF
 
-    if test "${_mode}" = "light"; then
-        wal --theme "${_theme}" -l
-    else
-        wal --theme "${_theme}"
-    fi
+if test "${_mode}" = "light"; then
+    wal --theme "${_theme}" -l
+else
+    wal --theme "${_theme}"
+fi
 
-    test -f "${_scripts_dir}/lightxDark.sh" && "${_scripts_dir}/lightxDark.sh" "${_mode}" &
-    set_wallpaper "${_wallpaper}"
+test -f "${_scripts_dir}/lightxDark.sh" && "${_scripts_dir}/lightxDark.sh" "${_mode}" &
+set_wallpaper "${_wallpaper}"
 
-    echo "${1}" > "${_config_dir}/.current_theme"
-    echo "set background=${_mode}" > "${HOME}/.vim.mode"
+echo "${1}" > "${_config_dir}/.current_theme"
+echo "set background=${_mode}" > "${HOME}/.vim.mode"
 }
 
 refresh_resources() {
