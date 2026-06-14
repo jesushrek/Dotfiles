@@ -46,7 +46,7 @@ refresh_resources() {
     rm -f /tmp/grayscale
 
     test -f "${_scripts_dir}/dunst.sh" && "${_scripts_dir}/dunst.sh"
-    dunstctl reload || true
+    dunstctl reload -c ~/.config/dunst/dunstrc_xr_colors || true
 
     if test -d "${_oomox_repo}"; then
         "${_oomox_repo}/change_color.sh" -o my-xres-theme "${_oomox_template}"
