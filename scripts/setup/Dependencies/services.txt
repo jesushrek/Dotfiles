@@ -9,11 +9,10 @@ alsa
 chronyd
 cronie
 dbus
-dhcpcd
 nanoklogd
 nvidia-powerd
-polkitd
 socklog-unix
 sshd
 tlp
 udevd
+zramen

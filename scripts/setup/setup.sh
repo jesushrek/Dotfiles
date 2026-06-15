@@ -219,7 +219,7 @@ ln -s "${_colors_css}" "${_ff_p_dir}/chrome/colors.css"
 EOF
 }
 
-clean_up() { 
+clean_up() {
     printf '[~] Finalizing.\n'
     chown -R "${_user}":"${_user}" "${_home}"
     xbps-remove -OOo 

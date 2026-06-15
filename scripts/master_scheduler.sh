@@ -1,7 +1,6 @@
 #!/bin/sh
 
 _dir="${HOME}/scripts"
-
 while true; do
     _hour="$(date +%H)"
 
@@ -20,7 +19,7 @@ while true; do
         aplay "${HOME}/music/sleep/sleeping.wav"
         aplay "${HOME}/music/sleep/OutputCountDown.wav"
         /bin/bash "${_dir}/sortDownloads.sh"
-        sudo shutdown
+        sudo poweroff
     fi
 
     sleep 30
