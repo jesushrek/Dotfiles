@@ -29,8 +29,9 @@ xset s 298 2
 setxkbmap -layout us,np -variant ,olpc -option grp:alt_space_toggle &
 
 #themes
-~/.config/.wallpaper.sh &
 wal -R
+
+~/.config/.wallpaper.sh &
 redshift &
 picom &
 
@@ -39,13 +40,12 @@ pipewire &
 playerctld & 
 clipmenud &
 qbittorrent-nox &
-dunst -conf ~/.config/dunst/dunstrc_xr_colors &
-
 ~/scripts/master_scheduler.sh &
-
 xss-lock -n ~/scripts/detect_fullscreen_and_move_mouse.sh -- slock &
 kdeconnectd &
 xsettingsd &
+~/scripts/dunst.sh & 
+dunst -conf ~/.config/dunst/dunstrc_xr_colors &
 
 #dwm
 exec dbus-launch --exit-with-session "${twm}" 2> ~/.dwm.log

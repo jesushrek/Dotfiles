@@ -15,5 +15,13 @@ while true; do
         fi
     fi
 
+    # time to snooze
+    if test "${_hour}" -ge 21; then
+        aplay "${HOME}/music/sleep/sleeping.wav"
+        aplay "${HOME}/music/sleep/OutputCountDown.wav"
+        /bin/bash "${_dir}/sortDownloads.sh"
+        sudo shutdown
+    fi
+
     sleep 30
 done

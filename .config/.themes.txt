@@ -18,6 +18,7 @@ black-metal-khold:base16-black-metal-khold:WeepingAngel.png:dark
 dkeg-shade:dkeg-shade:metro-2033.png:dark
 dkeg-stv:dkeg-stv:Spritied_away.png:dark
 dkeg-vans:dkeg-vans:stars.png:dark
+dkeg-traffic:dkeg-traffic:leaves.png:dark
 dracula:base16-dracula:dracula-leaves-6272a4-dark.png:dark
 gruvbox:gruvbox:yosemite_valley.png:dark
 gruvbox-hard-dark:base16-gruvbox-hard:brothers.png:dark

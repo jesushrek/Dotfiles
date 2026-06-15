@@ -849,7 +849,6 @@ focus(Client *c)
 	if (selmon->sel && selmon->sel != c)
 		unfocus(selmon->sel, 0);
 	if (c) {
-        c->bw = borderpx;
 		if (c->mon != selmon)
 			selmon = c->mon;
 		if (c->isurgent)
@@ -1890,9 +1889,6 @@ unfocus(Client *c, int setfocus)
 		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
 	}
-
-    c->bw = 0;
-    arrange(c->mon);
 }
 
 void
