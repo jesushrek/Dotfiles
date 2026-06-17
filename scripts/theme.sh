@@ -8,6 +8,7 @@ _themes_list="${_config_dir}/.themes.txt"
 
 _oomox_repo="${HOME}/.repo/oomox-gtk-theme"
 _oomox_template="${HOME}/.cache/wal/colors-oomox"
+#_oomox_template="${HOME}/.repo/oomox-gtk-theme/test/colors/xresources/xresources"
 _vim_theme_generator="${HOME}/.repo/vimpersonalizer/vimpersonalize.sh"
 
 notify() { notify-send "${1}" "${2}"; }
