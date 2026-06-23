@@ -13,7 +13,8 @@ static char *fonts[]          = {
     "Noto Color Emoji:style=Regular",
     "monospace:size=13",
 };
-static char dmenufont[]       = "monospace:size=10";
+
+// static char dmenufont[]       = "monospace:size=10";
 
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";

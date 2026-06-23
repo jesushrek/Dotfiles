@@ -1,4 +1,5 @@
 2048-qt
+ImageMagick
 MesaLib-devel
 NetworkManager
 Thunar
@@ -70,6 +71,7 @@ pipewire
 playerctl
 polkit
 poppler-utils
+pywal
 qalculate
 qbittorrent-nox
 qt5-devel
@@ -78,7 +80,7 @@ qt5ct
 qt6-base-devel
 qt6ct
 qtcreator
-qtcreator-qt6
+qtcreator-full
 redshift
 sassc
 socklog-void

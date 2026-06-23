@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-data="/home/"$USER"/scripts/.sites"
+data="$HOME/scripts/.sites"
 touch $data
 
 open=$( less "$data" | dmenu -l 15 -p "open: " ) || exit 0

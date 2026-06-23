@@ -8,16 +8,16 @@ while true; do
     sh "${_dir}/bar.sh"
 
     _hour="$(date +%H)"
-    # gray scale after 5'O clock
-    if test "${_hour}" -ge 17; then
-        if ! test -f /tmp/grayscale; then
-            "${_dir}/grayscale.sh"
-        fi
-    fi
+    #    gray scale after 5'O clock
+    #   if test "${_hour}" -ge 17; then
+    #       if ! test -f /tmp/grayscale; then
+    #           "${_dir}/grayscale.sh"
+    #       fi
+    #   fi
 
     # time to snooze
     if test "${_hour}" -ge 21; then
-        aplay "${_dir_music}/sleep/sleeping.wav" && aplay "${_dir_music}/sleep/OutputCountDown.wav"
+        aplay "${_dir_music}/sleep/sleeping.wav" 
         /bin/bash "${_dir}/sortDownloads.sh"
         sudo poweroff
     fi

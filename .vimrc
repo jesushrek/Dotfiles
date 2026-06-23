@@ -2,7 +2,6 @@
 call plug#begin()
 Plug 'gko/vim-coloresque'
 Plug 'dylanaraps/wal.vim'
-Plug 'lervag/vimtex'
 call plug#end()
 
 " Global settings
