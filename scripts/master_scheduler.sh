@@ -22,5 +22,5 @@ while true; do
         sudo poweroff
     fi
 
-    sleep 30
+    sleep 20
 done

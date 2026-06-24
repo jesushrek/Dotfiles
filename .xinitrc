@@ -30,7 +30,7 @@ setxkbmap -layout us,np -variant ,olpc -option grp:alt_space_toggle &
 
 #themes
 wal -R -q
-~/scripts/dunst.sh & 
+~/scripts/dunst.sh 
 ~/.config/.wallpaper.sh &
 redshift &
 picom &
