@@ -59,6 +59,7 @@ mpv
 mpv-mpris
 nerd-fonts-symbols-ttf
 netcat
+newsboat
 nmap
 noto-fonts-cjk
 noto-fonts-emoji
@@ -89,12 +90,14 @@ tesseract-ocr
 tesseract-ocr-eng
 tesseract-ocr-nep
 texlive-bin
+thermald
 thunderbird
 tlp
 void-repo-multilib
 void-repo-multilib-nonfree
 void-repo-nonfree
 vulkan-loader
+w3m
 wget
 xclip
 xdotool
