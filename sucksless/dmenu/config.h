@@ -6,19 +6,16 @@ static int topbar = 1;                      /* -b  option; if 0, dmenu appears a
 static const int user_bh = 0;               /* add an defined amount of pixels to the bar height */
 
 static char *fonts[]          = {
-    "monospace:size=15",
-    "Matangi Semibold:size=13:antialias=true:hinting=true",
-    "Noto Sans Devanagari UI:style=Regular:size=13:antialias=true:hinting=true",
-    "Noto Color Emoji:size=13:style=Regular"
-    "Symbols Nerd Font Mono:size=13:style=Regular",
+    "Matangi:size=13",
+    "monospace:size=13"
 };
 
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
-	/*     fg         bg       */
-	[SchemeNorm] = { "#bbbbbb", "#222222" },
-	[SchemeSel] = { "#eeeeee", "#005577" },
-	[SchemeOut] = { "#000000", "#00ffff" },
+    /*     fg         bg       */
+    [SchemeNorm] = { "#bbbbbb", "#222222" },
+    [SchemeSel] = { "#eeeeee", "#005577" },
+    [SchemeOut] = { "#000000", "#00ffff" },
 };
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
 static unsigned int lines      = 0;
