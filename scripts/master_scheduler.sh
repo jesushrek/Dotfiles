@@ -9,11 +9,11 @@ while true; do
 
     _hour="$(date +%H)"
     # gray scale after 5'O clock
-   #if test "${_hour}" -ge 17; then
-   #    if ! test -f /tmp/grayscale; then
-   #        "${_dir}/grayscale.sh"
-   #        fi
-   #    fi
+    if test "${_hour}" -ge 17; then
+        if ! test -f /tmp/grayscale; then
+            "${_dir}/grayscale.sh"
+        fi
+    fi
 
     # time to snooze
     if test "${_hour}" -ge 21; then

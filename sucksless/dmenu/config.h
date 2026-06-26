@@ -6,8 +6,7 @@ static int topbar = 1;                      /* -b  option; if 0, dmenu appears a
 static const int user_bh = 0;               /* add an defined amount of pixels to the bar height */
 
 static char *fonts[]          = {
-    "Matangi:size=13",
-    "monospace:size=13"
+    "Matangi Semibold:size=13",
 };
 
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
