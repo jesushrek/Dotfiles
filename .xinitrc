@@ -16,6 +16,7 @@ export sysmodmap="${xinitdir}/.Xmodmap"
 export MOUSE_DIRECTION=left
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export picture_dir="${HOME}/Pictures"
+
 # merge Resources
 test -f "${sysresources}" && xrdb -merge "${sysresources}"
 test -f "${sysmodmap}" && xmodmap "${sysmodmap}"
@@ -30,7 +31,6 @@ setxkbmap -layout us,np -variant ,olpc -option grp:alt_space_toggle &
 
 #themes
 wal -R -q
-~/scripts/dunst.sh 
 ~/.config/.wallpaper.sh &
 redshift &
 picom &
@@ -44,6 +44,7 @@ qbittorrent-nox &
 xss-lock -n ~/scripts/detect_fullscreen_and_move_mouse.sh -- slock &
 kdeconnectd &
 xsettingsd &
+~/scripts/dunst.sh 
 dunst -conf ~/.config/dunst/dunstrc_xr_colors & 
 gpu-screen-recorder-ui &
 # take a photo on login :D

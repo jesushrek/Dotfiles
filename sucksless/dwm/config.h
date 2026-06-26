@@ -6,13 +6,7 @@ static unsigned int borderpx  = 1;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static char *fonts[]          = { 
-    "Matangi Semibold:size=11:antialias=true:hinting=true",
-    "Noto Sans Devanagari UI:style=Regular:size=13:antialias=true:hinting=true",
-    "Symbols Nerd Font Mono:size=13:style=Regular",
-    "Noto Color Emoji:style=Regular",
-    "monospace:size=13",
-};
+static const char font[] = "Matangi SemiBold 12";
 
 // static char dmenufont[]       = "monospace:size=10";
 
@@ -141,7 +135,7 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_space,      togglefloating,         {0} },
     { MODKEY,                       XK_0,          view,                   {.ui = ~0 } },
     { MODKEY|ShiftMask,             XK_0,          tag,                    {.ui = ~0 } },
-  	{ MODKEY,                       XK_1,          focusmon,               {.i = -1 } },
+    { MODKEY,                       XK_1,          focusmon,               {.i = -1 } },
     { MODKEY,                       XK_2,          focusmon,               {.i = +1 } },
     { MODKEY|ShiftMask,             XK_1,          tagmon,                 {.i = -1 } },
     { MODKEY|ShiftMask,             XK_2,          tagmon,                 {.i = +1 } },
@@ -162,7 +156,7 @@ static const Key keys[] = {
     { MODKEY,                       XK_v,      spawn,          {.v = clipMenu } },
     { MODKEY|ShiftMask,                       XK_l,      spawn,   {.v = slock} },
 
-        TAGKEYS(                        XK_n,                                  0)
+    TAGKEYS(                        XK_n,                                  0)
         TAGKEYS(                        XK_m,                                  1)
         TAGKEYS(                        XK_comma,                              2)
         TAGKEYS(                        XK_period,                             3)
