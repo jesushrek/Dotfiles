@@ -70,13 +70,6 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 
-static const char *termcmd[]  = { "st", NULL };
-static const char *browser[]  = { "firefox", NULL };
-
-static const char *upvol[]      = { "/usr/bin/wpctl",   "set-volume", "@DEFAULT_AUDIO_SINK@",      "5%+",      NULL };
-static const char *downvol[]    = { "/usr/bin/wpctl",   "set-volume", "@DEFAULT_AUDIO_SINK@",      "5%-",      NULL };
-static const char *mutevol[]    = { "/usr/bin/wpctl",   "set-mute",   "@DEFAULT_AUDIO_SINK@",      "toggle",   NULL };
-
 /*
  * Xresources preferences to load at startup
  */
@@ -98,24 +91,8 @@ ResourcePref resources[] = {
 
 //static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *dmenucmd[] = { "dmenu_run", "-p", "select: ", "-m", dmenumon  };
-static const char *light_up[]   = { "/usr/bin/brillo", "-q", "-A", "5", NULL };
-static const char *light_down[] = { "/usr/bin/brillo", "-q", "-U", "5", NULL };
-static const char *clipMenu[]  = { "clipmenu", NULL };
-static const char *dmenuEmotes[] = {"/home/voyager-1/scripts/emoji.sh", NULL};
-static const char *dmenuWeb[] = {"/home/voyager-1/scripts/bookmarks.sh", NULL};
-static const char *playFart[] = {"/home/voyager-1/scripts/fart.sh", NULL};
-static const char *slock[] = {"slock", NULL};
-static const char *guiShot[] = { "flameshot", "gui",NULL };
-static const char *fullShot[] = { "flameshot", "full", "-c", "-p", "/home/voyager-1/Pictures/Screenshots",NULL };
-
-static const char *medplaycmd[] = { "playerctl", "play-pause", NULL };
-static const char *mednextcmd[] = { "playerctl", "next", NULL };
-static const char *medprevcmd[] = { "playerctl", "previous", NULL };
-
 static const Key keys[] = {
     /* modifier                     key            function                argument */
-    { MODKEY,                       XK_d,          spawn,                  {.v = dmenucmd } },
-    { MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
     { MODKEY,                       XK_b,          togglebar,              {0} },
     { MODKEY,                       XK_h,          focusstack,             {.i = +1 } },
     { MODKEY,                       XK_l,          focusstack,             {.i = -1 } },
@@ -139,24 +116,8 @@ static const Key keys[] = {
     { MODKEY,                       XK_2,          focusmon,               {.i = +1 } },
     { MODKEY|ShiftMask,             XK_1,          tagmon,                 {.i = -1 } },
     { MODKEY|ShiftMask,             XK_2,          tagmon,                 {.i = +1 } },
-    { 0,                 XF86XK_AudioPlay,        spawn,          {.v = medplaycmd } },
-    { 0,                 XF86XK_AudioNext,        spawn,          {.v = mednextcmd } },
-    { 0,                 XF86XK_AudioPrev,        spawn,          {.v = medprevcmd } },
-    { ControlMask|ShiftMask,        XK_period,  spawn,          {.v = dmenuEmotes } },
-    { ControlMask|ShiftMask,        XK_space,   spawn,          {.v = dmenuWeb } },
-    { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
-    { 0,                            XF86XK_AudioMute, spawn,        {.v = mutevol } },
-    { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
-    { 0,                            XK_Print,  spawn,          {.v = guiShot } },
-    { 0,                            XF86XK_Launch2,   spawn,                  {.v = playFart } },
-    { MODKEY,                       XK_Print,  spawn,          {.v = fullShot } },
-    { 0,							XF86XK_MonBrightnessUp,		spawn,	{.v = light_up} },
-    { MODKEY,                       XK_semicolon,               spawn,  {.v = browser } },
-    { 0,							XF86XK_MonBrightnessDown,	spawn,	{.v = light_down} },
-    { MODKEY,                       XK_v,      spawn,          {.v = clipMenu } },
-    { MODKEY|ShiftMask,                       XK_l,      spawn,   {.v = slock} },
 
-    TAGKEYS(                        XK_n,                                  0)
+        TAGKEYS(                        XK_n,                                  0)
         TAGKEYS(                        XK_m,                                  1)
         TAGKEYS(                        XK_comma,                              2)
         TAGKEYS(                        XK_period,                             3)
@@ -174,7 +135,6 @@ static const Button buttons[] = {
     { ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
     { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
     { ClkWinTitle,          0,              Button2,        zoom,           {0} },
-    { ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
     { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
     { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
     { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },

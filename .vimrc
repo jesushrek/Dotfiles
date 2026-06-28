@@ -2,6 +2,7 @@
 call plug#begin()
 Plug 'gko/vim-coloresque'
 Plug 'dylanaraps/wal.vim'
+Plug 'kovetskiy/sxhkd-vim'
 call plug#end()
 
 " Global settings

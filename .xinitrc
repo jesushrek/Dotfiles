@@ -9,6 +9,9 @@ export xterm="st"
 export twm="dwm"
 export xmodmap="xmodmap"
 
+export browser="firefox"
+export clipboard="clipmenu"
+
 export userresources="${HOME}/.Xresources"
 export usermodmap="${HOME}/.Xmodmap"
 export sysresources="${xinitdir}/.Xresources"
@@ -30,7 +33,9 @@ xset s 298 2
 setxkbmap -layout us,np -variant ,olpc -option grp:alt_space_toggle &
 
 #themes
-wal -R -q
+wal -R -q 
+~/scripts/dunst.sh &
+dunst -conf ~/.config/dunst/dunstrc_xr_colors & 
 ~/.config/.wallpaper.sh &
 redshift &
 picom &
@@ -38,17 +43,16 @@ picom &
 # essentials
 pipewire &
 playerctld & 
-clipmenud &
+"${clipmenu}" &
+sxhkd &
 qbittorrent-nox &
 ~/scripts/master_scheduler.sh &
 xss-lock -n ~/scripts/detect_fullscreen_and_move_mouse.sh -- slock &
 kdeconnectd &
 xsettingsd &
-~/scripts/dunst.sh 
-dunst -conf ~/.config/dunst/dunstrc_xr_colors & 
 gpu-screen-recorder-ui &
-# take a photo on login :D
 # hash ffmpeg && ffmpeg -v quiet -f video4linux2 -input_format mjpeg -video_size 1280x720 -i /dev/video0 -vframes 1 "${picture_dir}/login_pictures/$(date +%Y-%m-%dT%H).jpg" &
 
 #dwm
+dunstify
 exec dbus-launch --exit-with-session "${twm}" 2> ~/.dwm.log

@@ -19,9 +19,11 @@ set -o vi
 #aliases 
 alias ls='ls --color=auto'
 alias vi='vim'
+
 st_here() { 
     st >/dev/null 2>&1 & disown 
 }
+
 alias asdf='cd ~/personal/projects'
 alias convertor=~/scripts/convertor
 alias grep='grep --color=auto'
@@ -31,6 +33,7 @@ alias info='info --vi-keys'
 
 PS1='[\u@\h \W]\$ '
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+
 #launch x session 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; fi
 

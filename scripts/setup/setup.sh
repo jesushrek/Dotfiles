@@ -102,14 +102,14 @@ dotfiles_init() {
     chpst -u "${_user}" env HOME="${_home}" /bin/sh << EOF
     if  ! test -d "${_home}/.dotfiles"; then
 git lfs install
-git clone --bare "${_git_url}" "${_home}/.dotfiles"
+git clone --bare "${_git_url}" "${_home}/.dotfiles" --depth 1
 _df="/usr/bin/git --git-dir=${_home}/.dotfiles/ --work-tree=${_home}"
 \${_df} checkout -f
 \${_df} config --local status.showUntrackedFiles no
 
     if  ! test -d "${_home}/wallpapers"; then
         printf '[~] Initializing Wallpapers.\n'
-        git clone "${_wal_url}" "${_home}/wallpapers"
+        git clone "${_wal_url}" "${_home}/wallpapers" --depth 1
         (cd "${_home}/wallpapers" && git lfs pull)
     fi
 
