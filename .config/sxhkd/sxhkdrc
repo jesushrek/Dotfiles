@@ -1,33 +1,47 @@
 # HotKeys
 
+# All of the variables are defined in ~/.xinitrc.
 
+# Terminal
 super + Return
 	"${xterm}"
 
+# Dmenu
 super + d
 	dmenu_run -p "Select: " -m 0
 
+# Browser
 super + semicolon
 	"${browser}"
 
+# Clipboard
 super + v 
 	"${clipboard}"
 
+# Bookmarks
 ctrl + shift + space
 	"${HOME}/scripts/bookmarks.sh"
 
+# Special script
 XF86Launch2
 	"${HOME}/scripts/fart.sh"
 
+# Screen lock
 super + shift + l
 	"${lock}"
 
+# Emoji
+ctrl + shift + period
+	"${HOME}/scripts/emoji.sh"
+
+# Screenshot
 Print
 	flameshot gui
 
 super + Print
 	flameshot full -c -p "${picture_dir}/Screenshots"
 
+# Audio controls
 XF86AudioPlay
 	playerctl play-pause
 
@@ -46,6 +60,7 @@ XF86AudioRaiseVolume
 XF86AudioMute
 	/usr/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
+# Brightness Control
 XF86MonBrightnessUp
 	/usr/bin/brillo -q -A 5
 

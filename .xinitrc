@@ -8,6 +8,8 @@ export xclock="xclock"
 export xterm="st"
 export twm="dwm"
 export xmodmap="xmodmap"
+export lock="slock"
+export SXHKD_SHELL="/bin/sh"
 
 export browser="firefox"
 export clipboard="clipmenu"
