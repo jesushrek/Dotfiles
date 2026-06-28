@@ -90,7 +90,10 @@ ResourcePref resources[] = {
 };
 
 //static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+//
 static const char *dmenucmd[] = { "dmenu_run", "-p", "select: ", "-m", dmenumon  };
+static const char *termcmd[]  = { "st", NULL };
+
 static const Key keys[] = {
     /* modifier                     key            function                argument */
     { MODKEY,                       XK_b,          togglebar,              {0} },
@@ -117,7 +120,7 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_1,          tagmon,                 {.i = -1 } },
     { MODKEY|ShiftMask,             XK_2,          tagmon,                 {.i = +1 } },
 
-        TAGKEYS(                        XK_n,                                  0)
+    TAGKEYS(                        XK_n,                                  0)
         TAGKEYS(                        XK_m,                                  1)
         TAGKEYS(                        XK_comma,                              2)
         TAGKEYS(                        XK_period,                             3)
@@ -134,6 +137,7 @@ static const Button buttons[] = {
     /* click                event mask      button          function        argument */
     { ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
     { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+    { ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
     { ClkWinTitle,          0,              Button2,        zoom,           {0} },
     { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
     { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },

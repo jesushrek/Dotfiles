@@ -45,7 +45,7 @@ picom &
 # essentials
 pipewire &
 playerctld & 
-"${clipmenu}" &
+"${clipboard}" &
 sxhkd &
 qbittorrent-nox &
 ~/scripts/master_scheduler.sh &
@@ -56,5 +56,4 @@ gpu-screen-recorder-ui &
 # hash ffmpeg && ffmpeg -v quiet -f video4linux2 -input_format mjpeg -video_size 1280x720 -i /dev/video0 -vframes 1 "${picture_dir}/login_pictures/$(date +%Y-%m-%dT%H).jpg" &
 
 #dwm
-dunstify
 exec dbus-launch --exit-with-session "${twm}" 2> ~/.dwm.log
