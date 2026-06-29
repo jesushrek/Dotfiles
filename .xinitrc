@@ -45,7 +45,7 @@ picom &
 # essentials
 pipewire &
 playerctld & 
-"${clipboard}" &
+clipmenud &
 sxhkd &
 qbittorrent-nox &
 ~/scripts/master_scheduler.sh &
