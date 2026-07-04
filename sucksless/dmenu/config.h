@@ -7,7 +7,7 @@ static const int user_bh = 0;               /* add an defined amount of pixels t
 
 static char *fonts[]          = {
     "Matangi Semibold:size=12",
-    "Noto Sans:size=12",
+    "monospace:size=15"
     "Noto Color Emoji:style=Regular:size=10",
 };
 

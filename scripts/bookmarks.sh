@@ -19,6 +19,6 @@ case "$open" in
         echo "$(xclip -o -selection cliboard)" >> "$data" && notify-send "automatically added to the bookmarks" 
         ;;
     *)
-        firefox "$open" && notify-send "opening" "$open"  
+        $browser "$open" && notify-send "opening" "$open"  
         ;;
 esac

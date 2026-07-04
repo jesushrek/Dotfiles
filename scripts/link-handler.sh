@@ -16,7 +16,7 @@ case "${_link}" in
         curl -sL "${_link}" > "/tmp/$(echo "${_link}" | sed "s/.*\///;s/%20/ /g")" && zathura "/tmp/$(echo "${_link}" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 & 
         ;;
     http://*|https://*)
-        firefox "${_link}" # > /dev/null 2>&1 & 
+        "${browser}" "${_link}" # > /dev/null 2>&1 & 
         ;;
     *)
         exit 1

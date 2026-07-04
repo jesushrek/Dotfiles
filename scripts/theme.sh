@@ -6,8 +6,8 @@ _wallpaper_dir="${HOME}/wallpapers"
 _scripts_dir="${HOME}/scripts"
 _themes_list="${_config_dir}/.themes.txt"
 
-_oomox_repo="${HOME}/.repo/oomox-gtk-theme"
 #_oomox_template="${HOME}/.cache/wal/colors-oomox"
+_oomox_repo="${HOME}/.repo/oomox-gtk-theme"
 _oomox_template="${HOME}/.repo/oomox-gtk-theme/test/colors/xresources/xresources"
 _vim_theme_generator="${HOME}/.repo/vimpersonalizer/vimpersonalize.sh"
 
@@ -46,7 +46,7 @@ refresh_resources() {
     xdotool key Super+F5 &
     rm -f /tmp/grayscale
 
-    test -f "${_scripts_dir}/dunst.sh" && "${_scripts_dir}/dunst.sh"
+    test -f "${_scripts_dir}/startup/dunst.sh" && "${_scripts_dir}/startup/dunst.sh"
     dunstctl reload -c ~/.config/dunst/dunstrc_xr_colors || true
 
     if test -d "${_oomox_repo}"; then
