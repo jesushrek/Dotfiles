@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Paths and 
+# Paths and Environment
 export prefix="/usr"
 export exec_prefix="${prefix}"
 export xinitdir="/etc/X11/xinit"
@@ -23,14 +23,22 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 export picture_dir="${HOME}/Pictures"
 export scripts="${HOME}/scripts"
 
-# merge Resources
+# Merge Resources
 test -f "${sysresources}" && xrdb -merge "${sysresources}"
 test -f "${sysmodmap}" && xmodmap "${sysmodmap}"
 test -f "${userresources}" && xrdb -merge "${userresources}"
 test -f "${usermodmap}" && xmodmap "${usermodmap}"
 
-# launch some awesome programs
+# Generate colorschemes 
+wal -R -q
 
+# Auto lock setup
+xset s 298 2
+
+# Keyboard layouts
+setxkbmap -layout us,np -variant ,olpc -option grp:alt_space_toggle &
+
+# Launch custom startup scripts
 if test -d "${scripts}/startup" ; then
     for f in "${scripts}/startup"/?*.sh ; do
         test -x "${f}" && "${f}" & 
@@ -38,20 +46,13 @@ if test -d "${scripts}/startup" ; then
     unset f 
 fi
 
-# auto lock  
-xset s 298 2
-
-#keyboard layouts
-setxkbmap -layout us,np -variant ,olpc -option grp:alt_space_toggle &
-
-#themes
+# Themes & Compositor
 ~/.config/.wallpaper.sh &
-wal -R -q 
 dunst -conf ~/.config/dunst/dunstrc_xr_colors & 
 redshift &
 picom &
 
-# essentials
+# Essentials
 pipewire &
 playerctld & 
 clipmenud &
@@ -59,8 +60,9 @@ sxhkd &
 qbittorrent-nox &
 xss-lock -n "${scripts}/detect_fullscreen_and_move_mouse.sh" -- slock &
 xsettingsd &
-# hash ffmpeg && ffmpeg -v quiet -f video4linux2 -input_format mjpeg -video_size 1280x720 -i /dev/video0 -vframes 1 "${picture_dir}/login_pictures/$(date +%Y-%m-%dT%H).jpg" &
 
-zathura "${HOME}/personal/pdfs/routine/routine.pdf" & 
-#dwm
-exec dbus-launch --exit-with-session "${twm}" 2> ~/.dwm.log
+# Take an Image :P
+hash ffmpeg && ffmpeg -v quiet -f video4linux2 -input_format mjpeg -video_size 1280x720 -i /dev/video0 -vframes 1 "${picture_dir}/login_pictures/$(date +%Y-%m-%dT%H).jpg" &
+
+# Execute Window Manager securely
+exec dbus-run-session "${twm}" 2> ~/.dwm.log

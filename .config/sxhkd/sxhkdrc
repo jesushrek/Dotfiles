@@ -1,6 +1,14 @@
 # HotKeys
 
 # All of the variables are defined in ~/.xinitrc.
+ 
+# Reload Hotkeys
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# Get Info
+super + shift + grave
+	"${scripts}/notification.sh"
 
 # Terminal
 super + Return
@@ -20,11 +28,11 @@ super + v
 
 # Bookmarks
 ctrl + shift + space
-	"${HOME}/scripts/bookmarks.sh"
+	"${scripts}/bookmarks.sh"
 
 # Special script
 XF86Launch2
-	"${HOME}/scripts/fart.sh"
+	"${scripts}/fart.sh"
 
 # Screen lock
 super + shift + l
@@ -32,7 +40,7 @@ super + shift + l
 
 # Emoji
 ctrl + shift + period
-	"${HOME}/scripts/emoji.sh"
+	"${scripts}/emoji.sh"
 
 # Screenshot
 Print
