@@ -38,7 +38,7 @@ xset s 298 2
 # Keyboard layouts
 setxkbmap -layout us,np -variant ,olpc -option grp:alt_space_toggle &
 
-# Launch custom startup scripts
+# Launch startup scripts
 if test -d "${scripts}/startup" ; then
     for f in "${scripts}/startup"/?*.sh ; do
         test -x "${f}" && "${f}" & 
@@ -58,7 +58,7 @@ playerctld &
 clipmenud &
 sxhkd &
 qbittorrent-nox &
-xss-lock -n "${scripts}/detect_fullscreen_and_move_mouse.sh" -- slock &
+xss-lock -n "${scripts}/detect_fullscreen_and_move_mouse.sh" -- "${lock}" &
 xsettingsd &
 
 # Take an Image :P

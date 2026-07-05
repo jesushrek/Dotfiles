@@ -1,10 +1,10 @@
 # HotKeys
 
 # All of the variables are defined in ~/.xinitrc.
- 
+
 # Reload Hotkeys
 super + Escape
-    pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd
 
 # Get Info
 super + shift + grave
