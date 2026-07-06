@@ -55,8 +55,7 @@ refresh_resources() {
         "${_oomox_repo}/change_color.sh" -o my-xres-theme "${_oomox_template}"
     fi
 
-    pkill xsettingsd || true
-    (sleep 0.1; xsettingsd >/dev/null 2>&1) &
+    ( pkill -HUP xsettingsd || xsettingsd > /dev/null 2>&1 ) &
     notify "सफलता" "रूपरेखा लागू गरियो।"
 }
 
