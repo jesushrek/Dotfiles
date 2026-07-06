@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Paths and Environment
+export scripts="${HOME}/scripts"
 export prefix="/usr"
 export exec_prefix="${prefix}"
 export xinitdir="/etc/X11/xinit"
@@ -21,7 +22,6 @@ export sysmodmap="${xinitdir}/.Xmodmap"
 export MOUSE_DIRECTION=left
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export picture_dir="${HOME}/Pictures"
-export scripts="${HOME}/scripts"
 
 # Merge Resources
 test -f "${sysresources}" && xrdb -merge "${sysresources}"
@@ -61,8 +61,8 @@ qbittorrent-nox &
 xss-lock -n "${scripts}/detect_fullscreen_and_move_mouse.sh" -- "${lock}" &
 xsettingsd &
 
-# Take an Image :P
+# Take an Image of me
 hash ffmpeg && ffmpeg -v quiet -f video4linux2 -input_format mjpeg -video_size 1280x720 -i /dev/video0 -vframes 1 "${picture_dir}/login_pictures/$(date +%Y-%m-%dT%H).jpg" &
 
-# Execute Window Manager securely
+# Execute dwm
 exec dbus-run-session "${twm}" 2> ~/.dwm.log
