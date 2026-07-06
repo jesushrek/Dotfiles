@@ -37,5 +37,5 @@ while true; do
        sudo poweroff
    fi
 
-   sleep 20
+   sleep 1m
 done
