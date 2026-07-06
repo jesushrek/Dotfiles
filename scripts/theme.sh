@@ -31,7 +31,9 @@ EOF
 
 if test "${_mode}" = "light"; then
     wal --theme "${_theme}" -l
+    cp "${_config_dir}/xsettingsd/light.conf" "${_config_dir}/xsettingsd/xsettingsd.conf"
 else
+    cp "${_config_dir}/xsettingsd/dark.conf" "${_config_dir}/xsettingsd/xsettingsd.conf"
     wal --theme "${_theme}"
 fi
 
@@ -51,11 +53,10 @@ refresh_resources() {
 
     if test -d "${_oomox_repo}"; then
         "${_oomox_repo}/change_color.sh" -o my-xres-theme "${_oomox_template}"
-        pkill xsettingsd || true
-        (sleep 0.1; xsettingsd >/dev/null 2>&1) &
     fi
 
-    test -f "${_vim_theme_generator}" && "${_vim_theme_generator}" -a -i &
+    pkill xsettingsd || true
+    (sleep 0.1; xsettingsd >/dev/null 2>&1) &
     notify "सफलता" "रूपरेखा लागू गरियो।"
 }
 
