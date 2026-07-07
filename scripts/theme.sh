@@ -19,7 +19,7 @@ set_wallpaper() {
 
     _wp_script="${_config_dir}/.wallpaper.sh"
     printf "xwallpaper --stretch '%s/%s'\n" "${_wallpaper_dir}" "${1}" > "${_wp_script}"
-    chmod +x "${_wp_script}" && "${_wp_script}" &
+    chmod +x "${_wp_script}" && ("${_wp_script}" &)
 }
 
 set_theme() {
@@ -33,8 +33,8 @@ if test "${_mode}" = "light"; then
     wal --theme "${_theme}" -l
     cp "${_config_dir}/xsettingsd/light.conf" "${_config_dir}/xsettingsd/xsettingsd.conf"
 else
-    cp "${_config_dir}/xsettingsd/dark.conf" "${_config_dir}/xsettingsd/xsettingsd.conf"
     wal --theme "${_theme}"
+    cp "${_config_dir}/xsettingsd/dark.conf" "${_config_dir}/xsettingsd/xsettingsd.conf"
 fi
 
 test -f "${_scripts_dir}/lightxDark.sh" && "${_scripts_dir}/lightxDark.sh" "${_mode}" &
