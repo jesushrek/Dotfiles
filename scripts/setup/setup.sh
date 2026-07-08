@@ -13,7 +13,6 @@ _xorg_conf_dir="/etc/X11/xorg.conf.d/"
 _name="Sandesh Paudel"
 _email="sandesh1234poudels@gmail.com"
 _tlp_conf="/etc/tlp.conf"
-_has_nvidia=0
 _timezone="Asia/Kathmandu"
 _groups="wheel,audio,video,network"
 _wal_url="https://github.com/jesushrek/Wallpapers.git"
@@ -21,6 +20,7 @@ _git_url="https://github.com/jesushrek/dotfiles.git"
 _package_url="https://raw.githubusercontent.com/jesushrek/Dotfiles/refs/heads/master/.config/pkglist.txt"
 _ff_distri_dir="/usr/lib/firefox/distribution/"
 _ff_policies="${_dir_deps}/policies.json"
+_has_nvidia=0
 
 printf '[~] Checking For Nvidia.\n'
 if lspci -d 10de::03xx | grep -q NVIDIA; then
@@ -77,7 +77,7 @@ enable_services() {
     if test -f "${_list_services}"; then
         printf '[~] Enabling Services.\n'
         while read -r service; do
-            ln -s /etc/sv/"${service}" /var/service && printf '[ok] Enabled %s.\n' "${service}"
+            ln -sf /etc/sv/"${service}" /var/service && printf '[ok] Enabled %s.\n' "${service}"
         done < "${_list_services}"
     fi
 }
@@ -158,13 +158,13 @@ setup_power_control() {
 
 setup_pipewire_conf() { 
     printf '[~] Setting up Pipewire.\n'
-    ln -s /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
-    ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
-    ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
-    ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
+    ln -sf /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
+    ln -sf /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
+    ln -sf /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
+    ln -sf /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 }
 
-setup_firefox_conf() { 
+setup_firefox_conf() {
     printf '[~] Creating A Profile.\n'
     chpst -u "${_user}" env HOME="${_home}" firefox -headless -CreateProfile "${_user}"
 
@@ -214,8 +214,8 @@ _firefox_dotfiles="${_home}/.config/firefox/chrome/"
 
 printf '[~] Setting Firefox Theme.\n'
 chpst -u "${_user}" env HOME="${_home}" /bin/sh <<EOF
-ln -s "${_firefox_dotfiles}" "${_ff_p_dir}/chrome"
-ln -s "${_colors_css}" "${_ff_p_dir}/chrome/colors.css"
+ln -sf "${_firefox_dotfiles}" "${_ff_p_dir}/chrome"
+ln -sf "${_colors_css}" "${_ff_p_dir}/chrome/colors.css"
 EOF
 }
 
