@@ -12,7 +12,7 @@ while true; do
 
     sh "${_dir}/bar.sh"
 
-    if test "${_hour}" -le 12 || test "${_hour}" -ge 17; then
+    if test "${_hour}" -le 13 || test "${_hour}" -ge 16; then
         test "$(nmcli radio wifi)" = "enabled" && nmcli radio wifi off
         ! test -f /tmp/grayscale && "${_dir}/grayscale.sh"
     else
@@ -25,6 +25,6 @@ while true; do
         /bin/bash "${_dir}/sortDownloads.sh"
         sudo poweroff
     fi
-
     sleep 1m
+
 done
