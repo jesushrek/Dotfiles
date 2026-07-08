@@ -14,11 +14,11 @@ if nmcli -f NAME connection | grep -q "${_selected_ssid}"; then
             exit 0
             ;;
         "Disconnect")
-            nmcli connection down "${_selected_ssid}" && notify-send "Disconnected from" "${_selected_ssid}"
+            nmcli connection down "${_selected_ssid}" && notify-send "Disconnected from" "${_selected_ssid}" || notify-send "Couldn't disconnect to" "${_selected_ssid}"
             exit 0
             ;;
         "Forget")
-            nmcli connection delete "${_selected_ssid}" && notify-send "Forgot" "${_selected_ssid}"
+            nmcli connection delete "${_selected_ssid}" && notify-send "Forgot" "${_selected_ssid}" || notify-send "Couldn't forget" "${_selected_ssid}"
             exit 0
             ;;
     esac

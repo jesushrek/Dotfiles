@@ -10,7 +10,7 @@ test -f "${_shader}" || exit 0;
 if ! test -f "${_temp}"; then
     touch "${_temp}"
     magick "${_wallpaper_dir}/${_wallpaper}" -colorspace Gray /tmp/wallpaper.png 
-    xwallpaper --stretch /tmp/wallpaper.png & 
+    xwallpaper --stretch "/tmp/wallpaper.png"
     pkill picom; sleep 0.1
     picom --backend glx --window-shader-fg "${_shader}" & 
 else
