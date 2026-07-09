@@ -1,5 +1,3 @@
-To replicate it on another system.
-
 To automatically set up
 curl -sL https://jesushrek.github.io/void/install.sh | sh
 
@@ -19,4 +17,4 @@ to Fetch all the wallpapers
 
 git clone https://gitlab.com/shrek68/wallpapers.git
 
-- GO AWAY FROM THIHS PAGE -
+- GO AWAY FROM THIS PAGE -

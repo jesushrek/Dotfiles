@@ -7,30 +7,31 @@
 
 _dir="${HOME}/scripts"
 _dir_music="${HOME}/music"
-_hosts="/etc/hosts"
+_hosts="${HOME}/.config/hosts"
 
 while true; do
-    #   _hour="$(date +%H)"
-
-    sh "${_dir}/bar.sh"
-
-    if test "${_hour}" -le 13 || test "${_hour}" -ge 16; then
-        ! test -f /tmp/grayscale && "${_dir}/grayscale.sh"
-        if ! sed -n '/# BEGIN/,/# END/p' /etc/hosts | grep -q '^[0-9]'; then
-            mv "${_hosts}" "${_hosts}.bak"
-        fi
-    else
-        if sed -n '/# BEGIN/,/# END/p' /etc/hosts | grep -q '^[0-9]'; then
-            mv "${_hosts}.bak" "${_hosts}"         
-        fi
-        test -f /tmp/grayscale && "${_dir}/grayscale.sh"
-    fi
+    _hour="$(date +%H)"
 
     if test "${_hour}" -ge 21; then
         aplay "${_dir_music}/sleep/sleeping.wav" 
         /bin/bash "${_dir}/sortDownloads.sh"
         sudo poweroff
     fi
-    sleep 1m
 
+    if test "${_hour}" -le 13 || test "${_hour}" -ge 16; then
+        ! test -f /tmp/grayscale && "${_dir}/grayscale.sh"
+
+        if grep -q '^#127\.0\.0\.1.*facebook' "${_hosts}"; then
+            sed -i 's/^#127\.0\.0\.1/127.0.0.1/' "${_hosts}"
+            pkill -9 "${browser}"
+        fi
+    else
+        test -f /tmp/grayscale && "${_dir}/grayscale.sh"
+
+        if grep -q '^127\.0\.0\.1.*facebook' "${_hosts}"; then
+            sed -i '/facebook/ s/^127\.0\.0\.1/#127.0.0.1/' "${_hosts}"
+        fi
+    fi
+
+    sleep 1m
 done

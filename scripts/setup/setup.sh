@@ -219,6 +219,21 @@ ln -sf "${_colors_css}" "${_ff_p_dir}/chrome/colors.css"
 EOF
 }
 
+setup_hosts() { 
+    printf '[~] Linking /etc/hosts to ${_home}/.config/hosts\n'
+    _user_hosts="${_home}/.config/hosts"
+    if test -f "${_user_hosts}"; then
+        if test -f /etc/hosts/ && ! test -L /etc/hosts; then
+            mv /etc/hosts /etc/hosts.system.bak
+        fi
+
+        ln -sf "${_user_hosts}" /etc/hosts
+        printf '[ok] Symlinked\n'
+    else
+        printf '[x] Error %s not found\n' "${_user_hosts}"
+    fi
+}
+
 clean_up() {
     printf '[~] Finalizing.\n'
     chown -R "${_user}":"${_user}" "${_home}"
@@ -244,4 +259,5 @@ enable_services
 setup_power_control
 setup_firefox_conf
 install_suckless
+setup_hosts
 clean_up

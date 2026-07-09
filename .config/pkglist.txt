@@ -1,8 +1,8 @@
-2048-qt
 ImageMagick
 MesaLib-devel
 NetworkManager
 Thunar
+acpi
 alsa-lib-devel
 alsa-pipewire
 alsa-tools
@@ -24,6 +24,7 @@ cmake
 cronie
 cups
 curl
+dmidecode
 dumb_runtime_dir
 dunst
 fastfetch
@@ -34,6 +35,7 @@ gdb
 git
 git-lfs
 github-cli
+gnome-themes-extra
 grub-x86_64-efi
 gsettings-desktop-schemas
 gvim
@@ -43,7 +45,6 @@ imlib2-devel
 intel-ucode
 intel-video-accel
 jq
-kdeconnect
 libX11-devel
 libXcursor-devel
 libXft-devel
@@ -66,6 +67,7 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-ttf
 nvidia
+nvidia-libs-32bit
 pandoc
 pdftk
 picom
@@ -85,6 +87,7 @@ qtcreator
 qtcreator-full
 redshift
 sassc
+sl
 socklog-void
 sxhkd
 sxiv
@@ -101,6 +104,10 @@ void-repo-nonfree
 vulkan-loader
 w3m
 wget
+wine
+wine-gecko
+wine-mono
+winetricks
 xclip
 xdotool
 xmirror
@@ -110,6 +117,7 @@ xsettingsd
 xss-lock
 xtools
 xwallpaper
+yazi
 yt-dlp
 zathura
 zathura-cb
