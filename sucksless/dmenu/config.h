@@ -6,8 +6,8 @@ static int topbar = 1;                      /* -b  option; if 0, dmenu appears a
 static const int user_bh = 0;               /* add an defined amount of pixels to the bar height */
 
 static char *fonts[]          = {
-    "Matangi Semibold:size=12",
-    "monospace:size=15",
+    "Matangi Semibold:size=10",
+    "monospace:size=10",
     "Noto Color Emoji:style=Regular:size=10",
 };
 
