@@ -17,7 +17,7 @@ err()    { notify "त्रुटि" "${1}"; return 1; }
 set_wallpaper() {
     test -f "${_wallpaper_dir}/${1}" || err "तस्बिर फेला परेन"
 
-    _wp_script="${_config_dir}/.wallpaper.sh"
+    _wp_script="${_scripts_dir}/startup/.wallpaper.sh"
     printf "xwallpaper --stretch '%s/%s'\n" "${_wallpaper_dir}" "${1}" > "${_wp_script}"
     chmod +x "${_wp_script}" && ("${_wp_script}" &)
 }
@@ -62,7 +62,7 @@ refresh_resources() {
 test -f "${_themes_list}" || err "फेला परेन"
 
 case "${1}" in
-    "")        _selected="$(dmenu -i -l 100 -p "Select theme:" < "${_themes_list}")" ;;
+    "")        _selected="$(dmenu -i -l 9 -p "Select theme:" < "${_themes_list}")" ;;
     --random)  _selected="$(shuf -n 1 "${_themes_list}")" && notify "सफलता" "गोलाप्रथाद्वारा रूपरेखा छनोट गरियो" ;;
     *)         _selected="$(grep -m1 "${1}" "${_themes_list}")" ;;
 esac

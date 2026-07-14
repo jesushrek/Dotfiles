@@ -6,8 +6,7 @@ Plug 'kovetskiy/sxhkd-vim'
 call plug#end()
 
 " Global settings
-filetype plugin on 
-filetype plugin indent on
+filetype plugin indent on 
 syntax on
 
 set t_Co=16

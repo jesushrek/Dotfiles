@@ -20,6 +20,7 @@ _git_url="https://github.com/jesushrek/dotfiles.git"
 _package_url="https://raw.githubusercontent.com/jesushrek/Dotfiles/refs/heads/master/.config/pkglist.txt"
 _ff_distri_dir="/usr/lib/firefox/distribution/"
 _ff_policies="${_dir_deps}/policies.json"
+
 _has_nvidia=0
 
 printf '[~] Checking For Nvidia.\n'
@@ -137,9 +138,10 @@ install_pkgs() {
 
 install_suckless() { 
     printf '[~] Installing Suckless Software.\n'
-    for _prog in "${_home}/sucksless"/*; do
-        grep -rl "voyager-1" "${_prog}" | xargs -r sed -i "s|/home/voyager-1|${_home}|g"
-    done
+    #   for _prog in "${_home}/sucksless"/*; do
+    #       grep -rl "voyager-1" "${_prog}" | xargs -r sed -i "s|/home/voyager-1|${_home}|g" 
+    #       this is a leftover from a very old version and no long applicable
+    #   done
 
     for _prog in "${_home}/sucksless"/*; do
         _software="$(basename "${_prog}")"

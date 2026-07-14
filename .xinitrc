@@ -51,7 +51,6 @@ if test -d "${scripts}/startup" ; then
 fi
 
 # Themes & Compositor
-~/.config/.wallpaper.sh &
 dunst -conf ~/.config/dunst/dunstrc_xr_colors & 
 redshift &
 picom &
