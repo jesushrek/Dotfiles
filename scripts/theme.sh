@@ -17,7 +17,7 @@ err()    { notify "त्रुटि" "${1}"; return 1; }
 set_wallpaper() {
     test -f "${_wallpaper_dir}/${1}" || err "तस्बिर फेला परेन"
 
-    _wp_script="${_scripts_dir}/startup/.wallpaper.sh"
+    _wp_script="${_scripts_dir}/startup/wallpaper.sh"
     printf "xwallpaper --stretch '%s/%s'\n" "${_wallpaper_dir}" "${1}" > "${_wp_script}"
     chmod +x "${_wp_script}" && ("${_wp_script}" &)
 }
