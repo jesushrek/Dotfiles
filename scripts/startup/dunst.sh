@@ -107,7 +107,7 @@ xrdb_get () {
 #
 declare -A theme_attr_dict=(
     ["global-font"]="$(xrdb_get 'font' 'Matangi Semibold') $(xrdb_get '*.font_size:' '10')"
-    ["global-frame_width"]="$(xrdb_get 'border_width' '3')"
+    ["global-frame_width"]="$(xrdb_get 'border_width' '1')"
     ["global-frame_color"]="\"$(xrdb_get 'color8' '#65737e')\""
 
     ["urgency_low-background"]="\"$(xrdb_get 'color0' '#2b303b')\""
