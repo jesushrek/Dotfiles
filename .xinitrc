@@ -39,8 +39,8 @@ xset s 298 2
 setxkbmap -layout us,np -variant ,olpc -option grp:alt_space_toggle &
 
 # Take an Image of me
-! test -d "${picture_dir}/login_pictures" && mkdir "${picture_dir}/login_pictures"
-hash ffmpeg && ffmpeg -v quiet -f video4linux2 -input_format mjpeg -video_size 1280x720 -i /dev/video0 -vframes 1 "${picture_dir}/login_pictures/$(date +%Y-%m-%dT%H).jpg" &
+! test -d "${picture_dir}/login_pictures" && mkdir -p "${picture_dir}/login_pictures"
+#hash ffmpeg && ffmpeg -v quiet -f video4linux2 -input_format mjpeg -video_size 1280x720 -i /dev/video0 -vframes 1 "${picture_dir}/login_pictures/$(date +%Y-%m-%dT%H).jpg" &
 
 # Launch startup scripts
 if test -d "${scripts}/startup" ; then

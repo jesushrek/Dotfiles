@@ -14,6 +14,9 @@ _get_category() {
         zip|tar|gz|iso)
             printf 'Archive'
             ;;
+        xml|rss|json)
+            printf 'Feed'
+            ;;
     esac
 }
 
