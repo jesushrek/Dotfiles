@@ -32,15 +32,15 @@ test -f "${usermodmap}" && xmodmap "${usermodmap}"
 # Generate colorschemes 
 wal -R -q
 
-# Auto lock setup
+# Auto lock setup & Keyboard layouts
 xset s 298 2
-
-# Keyboard layouts
 setxkbmap -layout us,np -variant ,olpc -option grp:alt_space_toggle &
 
-# Take an Image of me
-! test -d "${picture_dir}/login_pictures" && mkdir -p "${picture_dir}/login_pictures"
-#hash ffmpeg && ffmpeg -v quiet -f video4linux2 -input_format mjpeg -video_size 1280x720 -i /dev/video0 -vframes 1 "${picture_dir}/login_pictures/$(date +%Y-%m-%dT%H).jpg" &
+# Essentials
+sxhkd &
+xss-lock -n "${scripts}/detect_fullscreen_and_move_mouse.sh" -- "${lock}" &
+xsettingsd &
+
 
 # Launch startup scripts
 if test -d "${scripts}/startup" ; then
@@ -49,20 +49,6 @@ if test -d "${scripts}/startup" ; then
     done
     unset f 
 fi
-
-# Themes & Compositor
-dunst -conf ~/.config/dunst/dunstrc_xr_colors & 
-redshift &
-picom &
-
-# Essentials
-pipewire &
-playerctld & 
-clipmenud &
-sxhkd &
-qbittorrent-nox &
-xss-lock -n "${scripts}/detect_fullscreen_and_move_mouse.sh" -- "${lock}" &
-xsettingsd &
 
 # Execute dwm
 exec dbus-run-session "${twm}" 2> ~/.dwm.log
