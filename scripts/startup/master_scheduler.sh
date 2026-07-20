@@ -11,9 +11,10 @@ while true; do
         aplay "${_dir_music}/sleep/sleeping.wav" 
         /bin/bash "${_dir}/sortDownloads.sh"
         sudo poweroff
+        exit 0
     fi
 
-    if test "${_hour}" -le 13 -o "${_hour}" -ge 16; then
+    if test "${_hour}" -le 13 || test "${_hour}" -ge 16; then
         ! test -f /tmp/grayscale && "${_dir}/grayscale.sh"
 
         if grep -q '^#127\.0\.0\.1.*facebook' "${_hosts}"; then
