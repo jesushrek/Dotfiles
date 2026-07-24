@@ -3,6 +3,7 @@ MesaLib-devel
 NetworkManager
 Thunar
 acpi
+alacritty
 alsa-lib-devel
 alsa-pipewire
 alsa-tools
@@ -16,6 +17,7 @@ base-devel
 base-system
 brillo
 cava
+chromium
 chrony
 clang
 clang-tools-extra
@@ -87,7 +89,6 @@ qtcreator
 qtcreator-full
 redshift
 sassc
-sl
 socklog-void
 sxhkd
 sxiv
@@ -96,7 +97,6 @@ tesseract-ocr-eng
 tesseract-ocr-nep
 texlive-bin
 thermald
-thunderbird
 tlp
 void-repo-multilib
 void-repo-multilib-nonfree

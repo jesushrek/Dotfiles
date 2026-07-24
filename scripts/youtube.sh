@@ -17,7 +17,7 @@ yt-dlp "ytsearch25:$query" \
 while true; do
     [[ ! -f "$CACHE_FILE" ]] && break
 
-    selection=$(cat "$CACHE_FILE" | dmenu -i -l 20 -p "Select Video:")
+    selection=$(cat "$CACHE_FILE" | dmenu -i -l 15 -p "Select Video:")
 
     [[ -z "$selection" ]] && break
 

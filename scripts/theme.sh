@@ -62,7 +62,7 @@ refresh_resources() {
 test -f "${_themes_list}" || err "फेला परेन"
 
 case "${1}" in
-    "")        _selected="$(dmenu -i -l 9 -p "Select theme:" < "${_themes_list}")" ;;
+    "")        _selected="$(dmenu -i -l 15 -p "Select theme:" < "${_themes_list}")" ;;
     --random)  _selected="$(shuf -n 1 "${_themes_list}")" && notify "सफलता" "गोलाप्रथाद्वारा रूपरेखा छनोट गरियो" ;;
     *)         _selected="$(grep -m1 "${1}" "${_themes_list}")" ;;
 esac

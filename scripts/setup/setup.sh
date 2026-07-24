@@ -222,7 +222,7 @@ EOF
 }
 
 setup_hosts() { 
-    printf '[~] Linking /etc/hosts to ${_home}/.config/hosts\n'
+    printf '[~] Linking ${_home}/.config/hosts to /etc/hosts\n'
     _user_hosts="${_home}/.config/hosts"
     if test -f "${_user_hosts}"; then
         if test -f /etc/hosts/ && ! test -L /etc/hosts; then

@@ -36,10 +36,10 @@ case $choice in
         ;;
 
     "view_done")
-        ls "$items"| grep "_done" | dmenu -l 17 -p "tasks:" 
+        ls "$items"| grep "_done" | dmenu -l 15 -p "tasks:" 
         ;;
 
     "view")
-        ls "$items" | grep -v "_done" | dmenu -l 17 -p "tasks:" 
+        ls "$items" | grep -v "_done" | dmenu -l 15 -p "tasks:" 
         ;;
 esac

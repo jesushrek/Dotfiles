@@ -13,7 +13,7 @@ _ac_state=$(cat /sys/class/power_supply/[aA]*/online)
 
 _raw_text="Adapter: ${_adapter}
 Vol: ${_volume}
-Ssid: ${_connected_ssid}
+Connected to: ${_connected_ssid}
 Date: ${_date}
 Player: ${_playing}
 Brightness: ${_brightness}

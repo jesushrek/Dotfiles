@@ -9,7 +9,7 @@ call plug#end()
 filetype plugin indent on 
 syntax on
 
-set t_Co=16
+" set t_Co=16
 colorscheme wal
 
 set hlsearch

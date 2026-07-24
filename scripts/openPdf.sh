@@ -1,6 +1,6 @@
 #!/bin/sh
 
-select=$(find "${HOME}/personal" -name "*.pdf" | dmenu -i -l 12 -p "Select the pdf") || exit 0
+select=$(find "${HOME}/personal" -name "*.pdf" | dmenu -i -l 15 -p "Select the pdf") || exit 0
 app=$(printf 'zathura\nbrowser' | dmenu -p "App:") || exit 0
 
 if test "${app}" = browser; then
