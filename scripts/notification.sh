@@ -7,7 +7,8 @@ _playing="$(playerctl status 2> /dev/null || printf 'Not Playing')"
 _brightness="$(brillo -G | cut -d. -f1)%"
 _uptime="$(uptime -p)"
 _adapter="Disconnected"
-_ac_state=$(cat /sys/class/power_supply/[aA]*/online)
+_ac_state="$(cat /sys/class/power_supply/[aA]*/online)"
+_unread="$(newsboat -x print-unread)"
 
 [ "${_ac_state}" = "1" ] && _adapter="Connected"
 
@@ -17,6 +18,7 @@ Connected to: ${_connected_ssid}
 Date: ${_date}
 Player: ${_playing}
 Brightness: ${_brightness}
-Uptime: ${_uptime}"
+Uptime: ${_uptime}
+Newsboat: ${_unread}"
 
 notify-send -u normal -r 999 "System Status" "${_raw_text}"
