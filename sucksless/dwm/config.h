@@ -87,7 +87,7 @@ ResourcePref resources[] = {
 };
 
 //static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
-//
+// All the other keybind is moved to ~/.config/shxkd
 static const char *dmenucmd[] = { "dmenu_run", "-p", "select: ", "-m", dmenumon  };
 static const char *termcmd[]  = { "st", NULL };
 
@@ -117,7 +117,7 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_1,          tagmon,                 {.i = -1 } },
     { MODKEY|ShiftMask,             XK_2,          tagmon,                 {.i = +1 } },
 
-    TAGKEYS(                        XK_n,                                  0)
+        TAGKEYS(                        XK_n,                                  0)
         TAGKEYS(                        XK_m,                                  1)
         TAGKEYS(                        XK_comma,                              2)
         TAGKEYS(                        XK_period,                             3)
