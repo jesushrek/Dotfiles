@@ -33,3 +33,4 @@ sexy-tangoesque:sexy-tangoesque:oldMan.png:dark
 solarized-light:solarized:kiwi.png:light
 solarized:solarized:solarizedCar.png:dark
 tempus_summer:tempus_summer:Purple_flowers.png:dark
+tempus_winter:tempus_winter:lotus.png:dark
