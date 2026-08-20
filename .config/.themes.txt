@@ -10,6 +10,7 @@ base16-black-metal:base16-black-metal:goldenEgle.png:dark
 base16-chalk:base16-chalk:Mountains.png:dark
 base16-circus:base16-circus:Rocket_warfare.png:dark
 base16-grayscale:base16-grayscale:Ahaetulla-prasina-white-morph.png:dark
+base16-gruvbox-medium:base16-gruvbox-medium:hanuman.png:dark
 base16-mocha:base16-mocha:parents.png:dark
 base16-ocean:base16-ocean:flowers.png:dark
 base16-solarflare:base16-solarflare:Giant.png:dark

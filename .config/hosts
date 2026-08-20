@@ -7,4 +7,4 @@
 ff02::1         ip6-allnodes
 ff02::2         ip6-allrouters
 
-#127.0.0.1   facebook.com www.facebook.com instagram.com www.instagram.com twitter.com www.twitter.com x.com www.x.com reddit.com www.reddit.com old.reddit.com youtube.com www.youtube.com
+127.0.0.1 facebook.com www.facebook.com instagram.com www.instagram.com twitter.com www.twitter.com x.com www.x.com reddit.com www.reddit.com old.reddit.com youtube.com www.youtube.com messenger.com www.messenger.com
