@@ -45,7 +45,7 @@ echo "set background=${_mode}" > "${HOME}/.vim.mode"
 }
 
 refresh_resources() {
-    xdotool key Super+F5 &
+    xdotool key --clearmodifiers Super+F5 &
     rm -f /tmp/grayscale
 
     test -f "${_scripts_dir}/startup/dunst.sh" && "${_scripts_dir}/startup/dunst.sh"

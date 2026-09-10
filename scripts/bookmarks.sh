@@ -15,7 +15,7 @@ case "$open" in
         echo "$add" >> "$data" && notify-send "added" "$add"
         ;;
     "auto")
-        xdotool key "ctrl+l" && xdotool key "ctrl+c" && xdotool key "Escape" &
+        xdotool key --clearmodifiers "ctrl+l" && xdotool key --clearmodifiers "ctrl+c" && xdotool key --clearmodifiers "Escape" &
         echo "$(xclip -o -selection cliboard)" >> "$data" && notify-send "automatically added to the bookmarks" 
         ;;
     *)
