@@ -60,17 +60,17 @@ XF86AudioPrev
 	playerctl previous
 
 XF86AudioLowerVolume
-	/usr/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- ; "${scripts}/notification.sh"
+	/usr/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- 
 
 XF86AudioRaiseVolume
-	/usr/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+ ; "${scripts}/notification.sh"
+	/usr/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+ 
 
 XF86AudioMute
-	/usr/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ; "${scripts}/notification.sh"
+	/usr/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle 
 
 # Brightness Control
 XF86MonBrightnessUp
-	/usr/bin/brillo -q -A 1 ; "${scripts}/notification.sh"
+	/usr/bin/brillo -q -A 1 
 
 XF86MonBrightnessDown
-	/usr/bin/brillo -q -U 1 ; "${scripts}/notification.sh"
+	/usr/bin/brillo -q -U 1 
