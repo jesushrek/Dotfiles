@@ -6,13 +6,13 @@ _devnagari() {
 
 _get_ritu() {
     case "$1" in
-        01|02)   echo "🌾 बसन्त" ;;  
-        03|04)   echo "🌽 ग्रष्म"  ;;
-        05|06)   echo "🐃 वर्षा" ;;
-        07|08)   echo "🪁 शरद"  ;;
-        09|10) echo "🍂 हेमन्त"  ;;
-        11|12) echo "❄ शिशिर"   ;;
-        *)       echo ""          ;;
+        12|01) echo "🌸 वसन्त"  ;;  # Chaitra, Baisakh
+        02|03) echo "🌽 ग्रीष्म"  ;;  # Jestha, Ashadh
+        04|05) echo "🐃 वर्षा"   ;;  # Shrawan, Bhadra
+        06|07) echo "🪁 शरद"    ;;  # Ashwin, Kartik
+        08|09) echo "🍂 हेमन्त"  ;;  # Mangsir, Poush
+        10|11) echo "❄️ शिशिर"  ;;  # Magh, Falgun
+        *)     echo ""          ;;
     esac
 }
 
